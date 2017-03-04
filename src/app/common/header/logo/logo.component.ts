@@ -4,10 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'logo',
   templateUrl: 'logo.component.html'
 })
+
 export class LogoComponent implements OnInit {
-  constructor() {}
+  constructor() {
 
-  ngOnInit() {
+  }
 
+  public ngOnInit() {
+    return;
   }
 }

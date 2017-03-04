@@ -4,10 +4,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'courseSearch',
   templateUrl: 'courseSearch.component.html'
 })
-export class courseSearchComponent implements OnInit {
-  constructor() {}
+export class CourseSearchComponent implements OnInit {
+  constructor() {
 
-  ngOnInit() {
+  }
 
+  public ngOnInit() {
+    return;
   }
 }

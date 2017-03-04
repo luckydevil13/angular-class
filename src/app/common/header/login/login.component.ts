@@ -4,10 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'login',
   templateUrl: 'login.component.html'
 })
+
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor() {
 
-  ngOnInit() {
+  }
 
+  public ngOnInit() {
+    return;
   }
 }

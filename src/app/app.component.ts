@@ -18,7 +18,7 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.component.css'
   ],
-  template: `<router-outlet></router-outlet>`
+  templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
 

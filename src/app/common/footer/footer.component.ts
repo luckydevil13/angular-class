@@ -4,10 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'footer',
   templateUrl: 'footer.component.html'
 })
+
 export class FooterComponent implements OnInit {
-  constructor() {}
+  constructor() {
 
-  ngOnInit() {
+  }
 
+  public ngOnInit() {
+    return;
   }
 }

@@ -5,9 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'courses.component.html'
 })
 export class CoursesComponent implements OnInit {
-  constructor() {}
+  constructor() {
 
-  ngOnInit() {
+  }
 
+  public ngOnInit() {
+    return;
   }
 }
