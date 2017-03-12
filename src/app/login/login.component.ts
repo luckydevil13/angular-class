@@ -6,7 +6,7 @@ export interface IUser {
 }
 
 @Component({
-    selector: 'login',
+    selector: 'sg-login',
     templateUrl: 'login.component.html'
 })
 
@@ -16,7 +16,7 @@ export class LoginComponent implements IUser {
       public login: string,
       public password: string
       ) {
-
+      return this;
     }
 
     public LogIn(user: IUser): IUser {

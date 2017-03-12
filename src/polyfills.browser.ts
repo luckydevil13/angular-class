@@ -38,7 +38,7 @@ if ('production' === ENV) {
   Error.stackTraceLimit = Infinity;
 
   /* tslint:disable no-var-requires */
+  /* tslint:disable no-require-imports */
   require('zone.js/dist/long-stack-trace-zone');
 
 }
-

@@ -12,6 +12,7 @@ import { AppState } from './app.service';
  * App Component
  * Top Level Component
  */
+
 @Component({
   selector: 'sg-app',
   encapsulation: ViewEncapsulation.None,

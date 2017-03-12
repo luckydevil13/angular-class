@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'login',
+  selector: 'sg-login',
   templateUrl: 'login.component.html'
 })
 
 export class LoginComponent implements OnInit {
   constructor() {
-
+    return this;
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     return;
   }
 }

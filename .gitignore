@@ -1,6 +1,8 @@
 # @AngularClass
 # local
 .flagged
+mylint.sh
+tsconfig.sublime-workspace
 
 # Logs
 logs

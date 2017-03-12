@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'courseSearch',
+  selector: 'sg-course-search',
   templateUrl: 'courseSearch.component.html'
 })
 export class CourseSearchComponent implements OnInit {
   constructor() {
-
+    return this;
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     return;
   }
 }

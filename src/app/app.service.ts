@@ -10,11 +10,13 @@ export class AppState {
   public _state: InternalStateType = { };
 
   // already return a clone of the current state
-  public get state(): any {
+  /* tslint:disable:typedef */
+  public get state() {
     return this._state = this._clone(this._state);
   }
   // never allow mutation
-  public set state(value: any): any {
+  /* tslint:disable:typedef */
+  public set state(value: any) {
     throw new Error('do not mutate the `.state` directly');
   }
 
@@ -24,7 +26,7 @@ export class AppState {
     return state.hasOwnProperty(prop) ? state[prop] : state;
   }
 
-  public set(prop: string, value: any): any {
+  public set(prop: string, value: any) {
     // internally mutate our state
     return this._state[prop] = value;
   }
