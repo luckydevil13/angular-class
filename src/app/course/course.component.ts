@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 export interface ICourse {
     title: string;
     description: string;
-    date: Object;
+    //date: Object;
     duration: number;
     authors: string[];
     id?: number;
@@ -19,7 +19,7 @@ export class CourseComponent implements ICourse {
     constructor(
         public title: string,
         public description: string,
-        public date: Object,
+        //public date: Object,
         public duration: number,
         public authors: string[],
         public id?: number
@@ -40,4 +40,5 @@ export class CourseComponent implements ICourse {
     public deleteCourse(id: number): boolean {
         return;
     }
+
 }
