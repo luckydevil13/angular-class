@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-  NgModule,
-  ApplicationRef
+  ApplicationRef,
+  NgModule
 } from '@angular/core';
 import {
-  removeNgStyles,
   createNewHosts,
-  createInputTransfer
+  createInputTransfer,
+  removeNgStyles
 } from '@angularclass/hmr';
 import {
   RouterModule,
@@ -31,7 +31,7 @@ import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
-const APP_PROVIDERS = [
+const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState
 ];
@@ -70,16 +70,16 @@ export class AppModule {
     public appState: AppState
   ) {}
 
-  public hmrOnInit(store: StoreType) {
+  public hmrOnInit(store: StoreType): void {
     if (!store || !store.state) {
       return;
     }
-    console.log('HMR store', JSON.stringify(store, null, 2));
+    console.log('HMR store', JSON.stringify(store, undefined, 2));
     // set state
     this.appState._state = store.state;
     // set input values
     if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
+      let restoreInputValues: any = store.restoreInputValues;
       setTimeout(restoreInputValues);
     }
 
@@ -88,10 +88,10 @@ export class AppModule {
     delete store.restoreInputValues;
   }
 
-  public hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
+  public hmrOnDestroy(store: StoreType): void {
+    const cmpLocation: any = this.appRef.components.map((cmp) => cmp.location.nativeElement);
     // save state
-    const state = this.appState._state;
+    const state: any = this.appState._state;
     store.state = state;
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
@@ -101,7 +101,7 @@ export class AppModule {
     removeNgStyles();
   }
 
-  public hmrAfterDestroy(store: StoreType) {
+  public hmrAfterDestroy(store: StoreType): void {
     // display new elements
     store.disposeOldHosts();
     delete store.disposeOldHosts;

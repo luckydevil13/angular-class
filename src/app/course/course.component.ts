@@ -10,7 +10,7 @@ export interface ICourse {
 }
 
 @Component({
-    selector: 'course',
+    selector: 'sg-course',
     templateUrl: 'course.component.html'
 })
 
