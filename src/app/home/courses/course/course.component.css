@@ -1,0 +1,29 @@
+.course {
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.course-header {
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+
+.course-desc {
+  padding-right: 30px;
+  text-align: justify;
+  text-indent: 30px;
+}
+
+.course-actions {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 20%;
+}

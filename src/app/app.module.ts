@@ -26,6 +26,17 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { CoursesComponent } from './home/courses';
+import { CourseSimpleComponent } from './home/courses/course';
+
+import { FooterComponent } from './common/footer';
+
+import { HeaderComponent } from './common/header';
+import { LogoComponent } from './common/header/logo';
+import { BreadcrumbComponent } from './common/header/breadcrumb';
+import { LoginComponent } from './common/header/login';
+
+import { CourseToolboxComponent } from './home/courseToolbox';
+
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
@@ -52,7 +63,14 @@ type StoreType = {
     AppComponent,
     HomeComponent,
     CoursesComponent,
+    CourseSimpleComponent,
     NoContentComponent,
+    FooterComponent,
+    HeaderComponent,
+    LogoComponent,
+    BreadcrumbComponent,
+    LoginComponent,
+    CourseToolboxComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
