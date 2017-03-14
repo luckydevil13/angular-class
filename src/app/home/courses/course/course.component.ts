@@ -8,7 +8,7 @@ import { ICourse } from '../../../course';
 })
 export class CourseSimpleComponent implements OnInit {
   @Input() public course: ICourse;
-  @Output() private notifyParent: EventEmitter<any> = new EventEmitter();
+  @Output() public notifyParent: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     return this;
