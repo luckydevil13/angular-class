@@ -24,18 +24,21 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
+
+// #/
 import { HomeComponent } from './home';
-import { CoursesComponent } from './home/courses';
-import { CourseSimpleComponent } from './home/courses/course';
 
+// #/courses/
+import { CoursesComponent } from './courses';
+import { CourseToolboxComponent } from './courses/courseToolbox';
+import { CourseSimpleComponent } from './courses/courseSimple';
+
+// Common components
 import { FooterComponent } from './common/footer';
-
 import { HeaderComponent } from './common/header';
 import { LogoComponent } from './common/header/logo';
 import { BreadcrumbComponent } from './common/header/breadcrumb';
 import { LoginComponent } from './common/header/login';
-
-import { CourseToolboxComponent } from './home/courseToolbox';
 
 import { NoContentComponent } from './no-content';
 

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ICourse } from '../../../course';
+import { ICourse } from '../../course';
 
 @Component({
   selector: 'sg-simple-course',
-  templateUrl: 'course.component.html',
-  styleUrls: ['course.component.css']
+  templateUrl: 'courseSimple.component.html',
+  styleUrls: ['courseSimple.component.css']
 })
 export class CourseSimpleComponent implements OnInit {
   @Input() public course: ICourse;
