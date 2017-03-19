@@ -1,33 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { LoginService } from './login.service';
 
-export interface IUser {
+export interface User {
   login: string;
-  password: string;
-}
+  password?: string;
+  token?: string;
+};
 
 @Component({
   selector: 'sg-login',
-  templateUrl: 'login.component.html'
+  encapsulation: ViewEncapsulation.None,
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
 })
 
-export class LoginComponent implements IUser {
+export class LoginComponent {
+  //private user: User;
 
-  constructor(
-    public login: string,
-    public password: string
-  ) {
+  constructor(private loginService: LoginService) {
     return this;
   }
 
-  public LogIn(user: IUser): IUser {
-    return;
-  }
-
-  public isAuthenficated(): boolean {
-    return true;
-  }
-
-  public LogOut(): boolean {
-    return;
+  public doLogin(user: User): void {
+    if (user.login && user.password) {
+      this.loginService.doLogin(user);
+      location.href = "/#/courses";
+    }
   }
 }

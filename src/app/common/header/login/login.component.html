@@ -1,5 +1,13 @@
 <div class="user-profile">
-    user login
+
+  <div *ngIf="!loginService.IsAuthenticated()">no login
     <br>
-    <a href="#">Logout</a>
+    <a href="/#/login">LogIn</a>
+  </div>
+
+  <div *ngIf="loginService.IsAuthenticated()">{{loginService.GetUserInfo()}}
+        <br>
+        <a href="#" (click)="logout()">Logout</a>
+  </div>
+
 </div>

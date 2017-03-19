@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sg-course-toolbox',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: 'courseToolbox.component.html',
   styleUrls: ['courseToolbox.component.css']
 })

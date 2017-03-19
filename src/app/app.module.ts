@@ -15,6 +15,10 @@ import {
   PreloadAllModules
 } from '@angular/router';
 
+import {AppCommonModule} from './common/app-common.module';
+import { LoginModule } from './login/login.module';
+
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -33,22 +37,20 @@ import { CoursesComponent } from './courses';
 import { CourseToolboxComponent } from './courses/courseToolbox';
 import { CourseSimpleComponent } from './courses/courseSimple';
 
-// Common components
-import { FooterComponent } from './common/footer';
-import { HeaderComponent } from './common/header';
-import { LogoComponent } from './common/header/logo';
-import { BreadcrumbComponent } from './common/header/breadcrumb';
-import { LoginComponent } from './common/header/login';
-
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
+// Servers
+import { CourseService } from './course/course.service';
+
+
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  CourseService
 ];
 
 type StoreType = {
@@ -68,18 +70,15 @@ type StoreType = {
     CoursesComponent,
     CourseSimpleComponent,
     NoContentComponent,
-    FooterComponent,
-    HeaderComponent,
-    LogoComponent,
-    BreadcrumbComponent,
-    LoginComponent,
     CourseToolboxComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    AppCommonModule,
+    LoginModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

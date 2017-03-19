@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewEncapsulation } from '@angular/core';
+import {User} from '../../../login/login.component';
+import {LoginService} from '../../../login/login.service';
+
 
 @Component({
-  selector: 'sg-login',
+  selector: 'sg-header-login',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
 
-export class LoginComponent implements OnInit {
-  constructor() {
-    return this;
+export class HeaderLoginComponent implements DoCheck {
+
+  constructor(private loginService: LoginService) {
   }
 
-  public ngOnInit(): void {
-    return;
+  public ngDoCheck(): void {
+  }
+
+  public logout(): void {
+    this.loginService.doLogout();
   }
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-export interface ICourse {
+export interface Course {
   title: string;
   description: string;
   date: Date;
@@ -10,11 +10,12 @@ export interface ICourse {
 }
 
 @Component({
-  selector: 'sg-course',
+  selector: `sg-course`,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: 'course.component.html'
 })
 
-export class CourseComponent implements ICourse {
+export class CourseComponent implements Course {
 
   constructor(
     public title: string,
@@ -25,15 +26,15 @@ export class CourseComponent implements ICourse {
     public id?: number
   ) { }
 
-  public getCourse(id: number): ICourse {
+  public getCourse(id: number): Course {
     return;
   }
 
-  public addCourse(course: ICourse): ICourse {
+  public addCourse(course: Course): Course {
     return;
   }
 
-  public updateCourse(course: ICourse): ICourse {
+  public updateCourse(course: Course): Course {
     return;
   }
 

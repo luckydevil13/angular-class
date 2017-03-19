@@ -1,0 +1,44 @@
+
+.login-form {
+  display: flex;
+  flex-direction: row;
+  height: calc(60vh);
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 15px;
+  background: lightgreen;
+}
+
+.form-wrapper label, .form-wrapper button {
+  margin-top: 15px;
+}
+
+.form-wrapper label {
+  font-size: 20px;
+}
+
+.form-wrapper input {
+  flex: 2 1 auto;
+  font-size: 20px;
+}
+
+.buttons {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buttons button {
+  flex: 0 1 95px;
+  font-size: 20px;
+}
+

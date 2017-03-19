@@ -1,30 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ICourse } from '../../course';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Course } from '../../course';
 
 @Component({
   selector: 'sg-simple-course',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: 'courseSimple.component.html',
   styleUrls: ['courseSimple.component.css']
 })
 export class CourseSimpleComponent implements OnInit {
-  @Input() public course: ICourse;
+  @Input() public course: Course;
   @Output() public notifyParent: EventEmitter<any> = new EventEmitter();
 
   constructor() {
-    return this;
   }
 
   public ngOnInit(): void {
     return;
   }
 
-  public deleteCourse(course: ICourse): void {
-    this.notifyParent.emit(
-      {
-        action: 'delete',
-        course
-     }
-    );
-
+  public deleteCourse(course: Course): void {
+      this.notifyParent.emit( { action: 'delete', course } );
   }
+
+
+
 }
