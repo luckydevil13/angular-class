@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from '../login/login.service';
 
 @Component({
@@ -6,12 +6,9 @@ import {LoginService} from '../login/login.service';
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   constructor(private loginService: LoginService) {
   }
 
-  public ngOnInit(): void {
-    return;
-  }
 }

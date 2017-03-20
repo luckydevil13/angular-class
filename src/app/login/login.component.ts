@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { LoginService } from './login.service';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {LoginService} from './login.service';
 
 export interface User {
   login: string;
   password?: string;
   token?: string;
-};
+}
 
 @Component({
   selector: 'sg-login',
@@ -15,16 +15,14 @@ export interface User {
 })
 
 export class LoginComponent {
-  //private user: User;
 
   constructor(private loginService: LoginService) {
-    return this;
   }
 
   public doLogin(user: User): void {
     if (user.login && user.password) {
       this.loginService.doLogin(user);
-      location.href = "/#/courses";
+      location.href = '/#/courses';
     }
   }
 }

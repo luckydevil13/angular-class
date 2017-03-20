@@ -1,12 +1,12 @@
 <div class="wrapper">
-    <sg-header></sg-header>
-    <main>
-        <sg-course-toolbox></sg-course-toolbox>
-        <ul>
-            <li *ngFor="let course of courses">
-                <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
-            </li>
-        </ul>
-    </main>
-    <sg-footer></sg-footer>
+  <sg-header></sg-header>
+  <main>
+    <sg-course-toolbox></sg-course-toolbox>
+    <ul>
+      <li *ngFor="let course of courses">
+        <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
+      </li>
+    </ul>
+  </main>
+  <sg-footer></sg-footer>
 </div>

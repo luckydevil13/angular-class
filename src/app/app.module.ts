@@ -22,7 +22,7 @@ import { LoginModule } from './login/login.module';
  */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
-// App is our top level component
+
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
@@ -42,14 +42,12 @@ import '../styles/headings.css';
 
 // Servers
 import { CourseService } from './course/course.service';
-import { DialogService } from './common/dialog.service';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  CourseService,
-  DialogService
+  CourseService
 ];
 
 type StoreType = {

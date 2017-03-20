@@ -1,23 +1,15 @@
 <div class="course">
-    <div>
-        <div class="course-header">
-            <span><b>{{course.title}}</b></span>
-            <span>{{course.duration}} min</span>
-            <span>{{course.date.toISOString().slice(0, 10)}}</span>
-        </div>
-        <p class="course-desc">l{{course.description}}</p>
+  <div>
+    <div class="course-header">
+      <span><b>{{course.title}}</b></span>
+      <span>{{course.duration}} min</span>
+      <span>{{course.date.toISOString().slice(0, 10)}}</span>
     </div>
-    <div class="course-actions">
+    <p class="course-desc">l{{course.description}}</p>
+  </div>
+  <div class="course-actions">
 
-        <button (click)="deleteCourse(course)"
-        class="btn-delete">Delete</button>
-        <button class="btn-edit">Edit course</button>
-
-
-    </div>
+    <button (click)="deleteCourse(course)" class="btn-delete">Delete</button>
+    <button class="btn-edit">Edit course</button>
+  </div>
 </div>
-
-
-
-
-

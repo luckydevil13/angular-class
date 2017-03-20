@@ -1,7 +1,5 @@
-import { Component, OnInit, DoCheck, ViewEncapsulation } from '@angular/core';
-import {User} from '../../../login/login.component';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from '../../../login/login.service';
-
 
 @Component({
   selector: 'sg-header-login',
@@ -10,12 +8,9 @@ import {LoginService} from '../../../login/login.service';
   styleUrls: ['login.component.css']
 })
 
-export class HeaderLoginComponent implements DoCheck {
+export class HeaderLoginComponent {
 
   constructor(private loginService: LoginService) {
-  }
-
-  public ngDoCheck(): void {
   }
 
   public logout(): void {

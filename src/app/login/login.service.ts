@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { User } from './login.component';
+import {Injectable} from '@angular/core';
+import {User} from './login.component';
 
 const userKeyName: string = 'currentUser';
-const guest: User = { login: 'guest' };
+const guest: User = {login: 'guest'};
 
 @Injectable()
 export class LoginService {
   private user: User;
 
-  constructor(){
+  constructor() {
     this.user = JSON.parse(localStorage.getItem('currentUser')) || guest;
   }
 
@@ -20,7 +20,7 @@ export class LoginService {
 
     this.user = user;
     this.user.token = this.geterateToken();
-    localStorage.setItem(userKeyName, JSON.stringify( this.user ));
+    localStorage.setItem(userKeyName, JSON.stringify(this.user));
   }
 
   public doLogout(): void {

@@ -1,11 +1,11 @@
-import { Component, OnInit, DoCheck, ViewEncapsulation } from '@angular/core';
-import { Course } from '../course';
-import { CourseService } from '../course/course.service';
+import {Component, OnInit, DoCheck, ViewEncapsulation} from '@angular/core';
+import {Course} from '../course';
+import {CourseService} from '../course/course.service';
 
 export interface CoursesNotofyEvent {
   action: string;
   course: Course;
-};
+}
 
 @Component({
   selector: 'sg-courses',
@@ -17,11 +17,11 @@ export interface CoursesNotofyEvent {
 export class CoursesComponent implements OnInit, DoCheck {
   public courses: Course[];
 
-  constructor( private courseService: CourseService ) {
+  constructor(private courseService: CourseService) {
   }
 
-  public ngOnInit(): void{
-   this.courses = this.courseService.getList();
+  public ngOnInit(): void {
+    this.courses = this.courseService.getList();
   }
 
   public ngDoCheck(): void {

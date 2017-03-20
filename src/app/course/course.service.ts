@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Course } from './course.component';
-
+import {Injectable} from '@angular/core';
+import {Course} from './course.component';
 
 let coursesData: Course[] = [
   {
@@ -19,8 +18,7 @@ let coursesData: Course[] = [
 
   {
     title: 'Course 2',
-    description:
-    'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
+    description: 'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
     'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
     'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
     'software like Aldus PageMaker including versions of Lorem Ipsum.' +
@@ -34,8 +32,7 @@ let coursesData: Course[] = [
 
   {
     title: 'Course 3',
-    description:
-    'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
+    description: 'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
     'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
     'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
@@ -70,7 +67,7 @@ export class CourseService {
   }
 
   public removeItem(course: Course): void {
-    this.courses = this.courses.filter( (currentCourse) => currentCourse.id !== course.id );
+    this.courses = this.courses.filter((currentCourse) => currentCourse.id !== course.id);
   }
 
 }
