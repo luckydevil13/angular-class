@@ -9,16 +9,15 @@
     </div>
     <div class="course-actions">
 
-      <button [swal]="['Delete?', 'This cannot be undone.', 'warning']" (confirm)="deleteFile(file)">
-        Delete {{ file.name }}
-      </button>
-
-
-        <button (click)="deleteCourse(course)" class="btn-delete">Delete</button>
+        <button (click)="deleteCourse(course)"
+        class="btn-delete">Delete</button>
         <button class="btn-edit">Edit course</button>
 
 
     </div>
 </div>
+
+
+
 
 

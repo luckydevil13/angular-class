@@ -17,8 +17,6 @@ import {
 
 import {AppCommonModule} from './common/app-common.module';
 import { LoginModule } from './login/login.module';
-
-
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -44,13 +42,14 @@ import '../styles/headings.css';
 
 // Servers
 import { CourseService } from './course/course.service';
-
+import { DialogService } from './common/dialog.service';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  CourseService
+  CourseService,
+  DialogService
 ];
 
 type StoreType = {
