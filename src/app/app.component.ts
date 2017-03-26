@@ -2,6 +2,7 @@
  * Angular 2 decorators and services
  */
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   ViewEncapsulation
@@ -19,7 +20,8 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.component.css'
   ],
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   public appState: AppState;

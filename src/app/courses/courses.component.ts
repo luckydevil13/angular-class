@@ -1,31 +1,34 @@
-import {Component, OnInit, DoCheck, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, DoCheck, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
 import {Course} from '../course';
 import {CourseService} from '../course/course.service';
 
 export interface CoursesNotofyEvent {
-  action: string;
-  course: Course;
+  readonly action: string;
+  readonly course: Course;
 }
 
 @Component({
   selector: 'sg-courses',
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'courses.component.html',
-  styleUrls: ['courses.component.css']
+  styleUrls: ['courses.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CoursesComponent implements OnInit, DoCheck {
-  public courses: Course[];
+  public courses: any;
 
   constructor(private courseService: CourseService) {
   }
 
   public ngOnInit(): void {
-    this.courses = this.courseService.getList();
+    this.courses = [];
+    this.courseService.getList().subscribe((course) => this.courses.push(course));
   }
 
   public ngDoCheck(): void {
-    this.courses = this.courseService.getList();
+    this.courses = [];
+    this.courseService.getList().subscribe((course) => this.courses.push(course));
   }
 
   public getNotification(evt: CoursesNotofyEvent): void {

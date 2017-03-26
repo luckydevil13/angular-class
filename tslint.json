@@ -2,11 +2,21 @@
     "extends": [
         "tslint:recommended"
     ],
+
     "rulesDirectory": [
         "./node_modules/codelyzer",
-        "./node_modules/ng2lint"
+        "./node_modules/ng2lint",
+        "./node_modules/tslint-immutable/rules"
     ],
     "rules": {
+//        "no-let": true,
+//        "no-this": true,
+//        "no-expression-statement": true,
+        "no-var-keyword": true,
+        "readonly-interface": true,
+//        "readonly-indexer": true,
+        "readonly-array": true,
+        "no-mixed-interface": true,
         "directive-selector": [true, "attribute", "sg", "camelCase"],
         "component-selector": [true, "element", "sg", "kebab-case"],
         "use-input-property-decorator": true,

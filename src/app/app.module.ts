@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
-  ApplicationRef,
+  ApplicationRef, ChangeDetectorRef,
   NgModule
 } from '@angular/core';
 import {
@@ -47,6 +47,7 @@ import { CourseService } from './course/course.service';
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
+  ChangeDetectorRef,
   CourseService
 ];
 

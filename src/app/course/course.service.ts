@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Course} from './course.component';
+import {Observable} from "rxjs";
 
-let coursesData: Course[] = [
+const coursesData: Course[] = [
   {
     title: 'Course 1',
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
@@ -42,28 +43,25 @@ let coursesData: Course[] = [
     duration: 104,
     authors: ['Noel Young'],
     id: 2
-  }
+  },
+
 ];
 
 @Injectable()
 export class CourseService {
-  private courses: Course[] = coursesData;
+  private courses: any = Observable.of(...coursesData);
 
-  public getList(): Course[] {
+  public getList(): Observable<Course[]> {
     return this.courses;
   }
 
   public createCourse(course: Course): void {
-    course.id = this.courses.length;
-    this.courses.push(course);
   }
 
-  public getItemByID(id: number): Course {
-    return this.courses.find((course) => course.id === id);
+  public getItemByID(id: number): void {
   }
 
   public updateItem(course: Course): void {
-    this.courses[course.id] = course;
   }
 
   public removeItem(course: Course): void {

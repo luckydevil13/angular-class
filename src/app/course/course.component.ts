@@ -1,18 +1,20 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
 export interface Course {
-  title: string;
-  description: string;
-  date: Date;
-  duration: number;
-  authors: string[];
+  readonly title: string;
+  readonly description: string;
+  readonly date: Date;
+  readonly duration: number;
+  readonly authors: string[];
+  /* tslint:disable:readonly-interface */
   id?: number;
 }
 
 @Component({
   selector: `sg-course`,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'course.component.html'
+  templateUrl: 'course.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CourseComponent implements Course {

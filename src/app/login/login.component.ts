@@ -1,17 +1,18 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from './login.service';
 
 export interface User {
-  login: string;
-  password?: string;
-  token?: string;
+  readonly login: string;
+  readonly password?: string;
+  readonly token?: string;
 }
 
 @Component({
   selector: 'sg-login',
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css']
+  styleUrls: ['login.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class LoginComponent {

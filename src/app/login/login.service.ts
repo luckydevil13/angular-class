@@ -1,44 +1,54 @@
 import {Injectable} from '@angular/core';
 import {User} from './login.component';
+import {Observable} from "rxjs";
+
 
 const userKeyName: string = 'currentUser';
 const guest: User = {login: 'guest'};
 
 @Injectable()
 export class LoginService {
-  private user: User;
+  private user: any;
 
   constructor() {
-    this.user = JSON.parse(localStorage.getItem('currentUser')) || guest;
+    const user: string = JSON.parse(localStorage.getItem('currentUser')) || guest;
+    this.user = Observable.from([user]);
+
   }
 
   public doLogin(user: User): void {
     console.log('Do Login');
 
     // TODO check credentials
-    delete user.password;
-
-    this.user = user;
-    this.user.token = this.geterateToken();
-    localStorage.setItem(userKeyName, JSON.stringify(this.user));
+    this.user = Observable.from([user]);
+    localStorage.setItem(userKeyName, JSON.stringify(
+        {
+          login: user.login,
+          token: this.generateToken()
+        }
+      )
+    );
   }
 
   public doLogout(): void {
     console.log('Do Logout');
-    this.user = guest;
+    this.user = Observable.from([guest]);
     localStorage.removeItem(userKeyName);
   }
 
   public IsAuthenticated(): boolean {
-    return this.user.login !== 'guest';
+    let isAuthenticated: boolean;
+    this.user.subscribe((user) =>  isAuthenticated = user.login !== 'guest' );
+    return isAuthenticated;
   }
 
-  public GetUserInfo(): string {
-    return this.user.login;
+  public GetUserInfo(): Observable<any> {
+    return this.user;
   }
 
-  private geterateToken(): string {
+  private generateToken(): string {
     return Math.random().toString().substr(2);
   }
 
 }
+
