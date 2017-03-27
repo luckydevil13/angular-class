@@ -1,5 +1,5 @@
 <span class="red">last change of block: {{lastchange() | date:'medium'}}</span>
-<div class="course">
+<div class="course green">
   <div>
     <div class="course-header">
       <span><b>{{course.title}}</b></span>
@@ -10,7 +10,7 @@
   </div>
   <div class="course-actions">
 
-    <button (click)="deleteCourse(course)" class="btn-delete">Delete</button>
+    <button (click)="deleteCourse(course)" class="btn-delete">Delete (default stategy)</button>
     <button class="btn-edit">Edit course</button>
   </div>
 </div>

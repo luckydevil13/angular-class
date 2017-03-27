@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -11,16 +10,15 @@ import {Course} from '../../course';
 import {DialogService} from '../../common/dialog.service';
 
 @Component({
-  selector: 'sg-simple-course',
+  selector: 'sg-simple-course-no-on-push',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'courseSimple.component.html',
+  templateUrl: 'courseSimple.notOnPush.component.html',
   styleUrls: [
     'courseSimple.component.css',
     '../../common/dialog.service.css'
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseSimpleComponent{
+export class CourseSimpleNotOnPushComponent{
   @Input() public course: Course;
   @Output() public notifyParent: EventEmitter<any> = new EventEmitter();
   private stopTimer: number;

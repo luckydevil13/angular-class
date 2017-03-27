@@ -1,23 +1,7 @@
 <div class="user-profile">
-
-
-
   <div>{{userLogin}}
     <br>
-    {{isUserAuthenticated}}
-    <a href="/#/login">LogIn</a>
-    <a href="#" (click)="logout()">Logout</a>
-
+    <a *ngIf="!isUserAuthenticated" href="/#/login">LogIn</a>
+    <a *ngIf="isUserAuthenticated" href="#" (click)="logout()">Logout</a>
   </div>
-
-  <!--<div *ngIf="!loginService.IsAuthenticated()">no login-->
-    <!--<br>-->
-    <!--<a href="/#/login">LogIn</a>-->
-  <!--</div>-->
-
-  <!--<div *ngIf="loginService.IsAuthenticated()">{{loginService.GetUserInfo()}}-->
-    <!--<br>-->
-    <!--<a href="#" (click)="logout()">Logout</a>-->
-  <!--</div>-->
-
 </div>

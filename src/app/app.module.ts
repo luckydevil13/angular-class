@@ -34,6 +34,7 @@ import { HomeComponent } from './home';
 import { CoursesComponent } from './courses';
 import { CourseToolboxComponent } from './courses/courseToolbox';
 import { CourseSimpleComponent } from './courses/courseSimple';
+import {CourseSimpleNotOnPushComponent} from './courses/courseSimple/courseSimple.notOnPush.component';
 
 import { NoContentComponent } from './no-content';
 
@@ -42,6 +43,8 @@ import '../styles/headings.css';
 
 // Servers
 import { CourseService } from './course/course.service';
+
+
 
 // Application wide providers
 const APP_PROVIDERS: any = [
@@ -68,7 +71,8 @@ type StoreType = {
     CoursesComponent,
     CourseSimpleComponent,
     NoContentComponent,
-    CourseToolboxComponent
+    CourseToolboxComponent,
+    CourseSimpleNotOnPushComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

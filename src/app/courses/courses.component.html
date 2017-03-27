@@ -3,8 +3,15 @@
   <main>
     <sg-course-toolbox></sg-course-toolbox>
     <ul>
+
       <li *ngFor="let course of courses">
         <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
+      </li>
+
+      <hr style="margin: 100px">
+
+      <li *ngFor="let course of courses">
+        <sg-simple-course-no-on-push [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course-no-on-push>
       </li>
     </ul>
   </main>

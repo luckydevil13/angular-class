@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from '../../login/login.service';
 
 @Component({
@@ -8,11 +8,12 @@ import {LoginService} from '../../login/login.service';
   styleUrls: ['header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   constructor(private loginService: LoginService) {
   }
 
-  public ngOnInit(): void {
-    return;
+  public lastchange(): Date {
+    return new Date();
   }
+
 }

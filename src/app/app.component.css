@@ -24,3 +24,11 @@ main {
 button {
     margin: 5px;
 }
+
+.red {
+  color: red;
+}
+
+.green {
+  color: darkgreen;
+}

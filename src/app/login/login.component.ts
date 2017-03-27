@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from './login.service';
+import {LoaderBlockService} from '../common/loaderBlock/loader.service';
 
 export interface User {
   readonly login: string;
@@ -17,13 +18,22 @@ export interface User {
 
 export class LoginComponent {
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private loaderBlockService: LoaderBlockService) {
   }
 
   public doLogin(user: User): void {
     if (user.login && user.password) {
-      this.loginService.doLogin(user);
-      location.href = '/#/courses';
+
+      this.loginService.doLogin(user).subscribe(
+        () => undefined,
+        (e) => console.log('error to login: ' + e),
+        () => {
+          this.loaderBlockService.Hide();
+          location.href = '/#/courses'
+        }
+      )
+    );
     }
-  }
+}
 }

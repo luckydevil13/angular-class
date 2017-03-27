@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {default as swal} from 'sweetalert2';
 import {Observable} from "rxjs";
 
@@ -18,4 +18,6 @@ export class DialogService {
     }))
 
   }
+
 }
+
