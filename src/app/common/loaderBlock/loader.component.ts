@@ -12,7 +12,7 @@ export class LoaderBlockComponent {
   public show: boolean;
 
   constructor() {
-    this.show = false;
+    this.show = true;
   }
 
   // constructor(private loginService: LoginService,

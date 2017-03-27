@@ -12,9 +12,11 @@ import {LoginService} from '../../../login/login.service';
 export class HeaderLoginComponent {
   private isUserAuthenticated: boolean;
   private userLogin: string;
+  private isOnLoginPage: boolean;
 
   constructor(private loginService: LoginService,
               private cd: ChangeDetectorRef) {
+    this.isOnLoginPage = RegExp('login').test(window.location.toString());
     this.userLogin = 'Guest';
     loginService.GetUserInfo().subscribe(
       (user) => {
