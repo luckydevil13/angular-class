@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {Course} from '../../course';
 import {DialogService} from '../../common/dialog.service';
+import {LoaderBlockService} from '../../common/loaderBlock/loader.service';
 
 @Component({
   selector: 'sg-simple-course-no-on-push',
@@ -18,7 +19,7 @@ import {DialogService} from '../../common/dialog.service';
     '../../common/dialog.service.css'
   ],
 })
-export class CourseSimpleNotOnPushComponent{
+export class CourseSimpleNotOnPushComponent {
   @Input() public course: Course;
   @Output() public notifyParent: EventEmitter<any> = new EventEmitter();
   private stopTimer: number;
@@ -27,7 +28,8 @@ export class CourseSimpleNotOnPushComponent{
   private subOnStable: any;
 
   constructor(private dialogService: DialogService,
-              private ngZone: NgZone
+              private ngZone: NgZone,
+              private loaderBlockService: LoaderBlockService
   ) {
     this.subOnUnstable = this.ngZone.onUnstable.subscribe(this.onZoneUnstable.bind(this));
     this.subOnStable = this.ngZone.onStable.subscribe(this.onZoneStable.bind(this));
@@ -38,14 +40,19 @@ export class CourseSimpleNotOnPushComponent{
   }
 
   public deleteCourse(course: Course): void {
+    this.loaderBlockService.Show();
 
     // due affected parent component profiling
     // this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
     //   () => this.notifyParent.emit({action: 'delete', course}),
     //   () => undefined
     // );
-
-    this.notifyParent.emit({action: 'delete', course})
+    setTimeout(
+      () => {
+        this.loaderBlockService.Hide();
+        this.notifyParent.emit({action: 'delete', course});
+      },
+      1000);
   }
 
   private onZoneUnstable(): void {
@@ -64,5 +71,4 @@ export class CourseSimpleNotOnPushComponent{
     this.subOnUnstable.unsubscribe();
     this.subOnStable.unsubscribe();
   }
-
 }

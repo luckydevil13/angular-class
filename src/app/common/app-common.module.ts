@@ -7,11 +7,6 @@ import {HeaderLoginComponent} from './header/login/login.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbComponent} from './header/breadcrumb/breadcrumb.component';
 import {DialogService} from './dialog.service';
-import {LoaderBlockComponent} from './loaderBlock/loader.component';
-import {LoaderBlockService} from './loaderBlock/loader.service';
-
-
-
 
 @NgModule({
   imports: [
@@ -19,18 +14,16 @@ import {LoaderBlockService} from './loaderBlock/loader.service';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent,
-    LoaderBlockComponent
+    FooterComponent
   ],
   declarations: [
     HeaderComponent,
     LogoComponent,
     BreadcrumbComponent,
     HeaderLoginComponent,
-    FooterComponent,
-    LoaderBlockComponent
+    FooterComponent
   ],
-  providers: [DialogService, LoaderBlockService]
+  providers: [DialogService]
 })
 export class AppCommonModule {
 }

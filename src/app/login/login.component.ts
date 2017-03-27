@@ -25,15 +25,20 @@ export class LoginComponent {
   public doLogin(user: User): void {
     if (user.login && user.password) {
 
+      this.loaderBlockService.Show();
+
       this.loginService.doLogin(user).subscribe(
         () => undefined,
-        (e) => console.log('error to login: ' + e),
+        () => undefined,
         () => {
-          this.loaderBlockService.Hide();
-          location.href = '/#/courses'
+          setTimeout(
+            () => {
+              this.loaderBlockService.Hide();
+              location.href = '/#/courses';
+            },
+            1000);
         }
-      )
-    );
+      );
     }
-}
+  }
 }

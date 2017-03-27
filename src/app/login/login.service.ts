@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from './login.component';
-import {Observable} from "rxjs";
-import {LoaderBlockService} from "../common/loaderBlock/loader.service";
-
+import {Observable} from 'rxjs';
 
 const userKeyName: string = 'currentUser';
 const guest: User = {login: 'guest'};
@@ -11,17 +9,13 @@ const guest: User = {login: 'guest'};
 export class LoginService {
   private user: any;
 
-  constructor(private loaderBlockService: LoaderBlockService) {
+  constructor() {
     const user: string = JSON.parse(localStorage.getItem('currentUser')) || guest;
     this.user = Observable.from([user]);
-
   }
 
-  public doLogin(user: User): void {
-    this.loaderBlockService.Show();
+  public doLogin(user: User): Observable<any> {
     console.log('Do Login');
-
-    // TODO check credentials
     this.user = Observable.from([user]);
     localStorage.setItem(userKeyName, JSON.stringify(
         {
@@ -30,7 +24,6 @@ export class LoginService {
         }
       )
     );
-
     return this.user;
   }
 
@@ -42,7 +35,7 @@ export class LoginService {
 
   public IsAuthenticated(): boolean {
     let isAuthenticated: boolean;
-    this.user.subscribe((user) =>  isAuthenticated = user.login !== 'guest' );
+    this.user.subscribe((user) => isAuthenticated = user.login !== 'guest');
     return isAuthenticated;
   }
 
@@ -53,6 +46,4 @@ export class LoginService {
   private generateToken(): string {
     return Math.random().toString().substr(2);
   }
-
 }
-

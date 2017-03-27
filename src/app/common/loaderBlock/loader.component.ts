@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-// import {LoginService} from "../../login/login.service";
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation, ChangeDetectorRef} from '@angular/core';
+import {LoaderBlockService} from './loader.service';
 
 @Component({
   selector: 'sg-loadblock',
@@ -8,23 +8,18 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
   styleUrls: ['loader.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoaderBlockComponent {
+export class LoaderBlockComponent implements OnInit {
   public show: boolean;
 
-  constructor() {
-    this.show = true;
+  constructor(private loaderBlockService: LoaderBlockService,
+              private cd: ChangeDetectorRef) {
   }
 
-  // constructor(private loginService: LoginService,
-  //             private cd: ChangeDetectorRef) {
-  //
-  //   loginService.GetUserInfo().subscribe(
-  //     (user) => {
-  //       this.isUserAuthenticated = loginService.IsAuthenticated();
-  //     },
-  //     undefined,
-  //     () => this.cd.markForCheck()
-  //   );
-  // }
-
+  public ngOnInit(): void {
+    this.loaderBlockService.show.subscribe((val: boolean) => {
+      this.cd.markForCheck();
+      console.log('LoaderBlock:' + val);
+      this.show = val;
+    });
+  }
 }

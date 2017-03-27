@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Course} from './course.component';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 const coursesData: Course[] = [
   {
@@ -56,16 +56,18 @@ export class CourseService {
   }
 
   public createCourse(course: Course): void {
+    return;
   }
 
   public getItemByID(id: number): void {
+    return;
   }
 
   public updateItem(course: Course): void {
+    return;
   }
 
   public removeItem(course: Course): void {
     this.courses = this.courses.filter((currentCourse) => currentCourse.id !== course.id);
   }
-
 }

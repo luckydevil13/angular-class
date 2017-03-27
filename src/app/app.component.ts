@@ -22,6 +22,7 @@ import { AppState } from './app.service';
   ],
   templateUrl: 'app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class AppComponent implements OnInit {
   public appState: AppState;

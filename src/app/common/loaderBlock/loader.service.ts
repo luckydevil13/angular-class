@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {LoaderBlockComponent} from './loader.component';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class LoaderBlockService {
+  public show: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public Show(): void {
-    LoaderBlockComponent.show = true;
- }
+    this.show.next(true);
+  }
 
- public Hide(): void {
-   LoaderBlockComponent.show = false;
- }
+  public Hide(): void {
+    this.show.next(false);
+  }
 }

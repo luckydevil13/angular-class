@@ -27,15 +27,13 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
-// #/
+// Components
 import { HomeComponent } from './home';
-
-// #/courses/
+import { LoaderBlockComponent } from './common/loaderBlock/loader.component';
 import { CoursesComponent } from './courses';
 import { CourseToolboxComponent } from './courses/courseToolbox';
 import { CourseSimpleComponent } from './courses/courseSimple';
-import {CourseSimpleNotOnPushComponent} from './courses/courseSimple/courseSimple.notOnPush.component';
-
+import { CourseSimpleNotOnPushComponent } from './courses/courseSimple/courseSimple.notOnPush.component';
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
@@ -43,15 +41,16 @@ import '../styles/headings.css';
 
 // Servers
 import { CourseService } from './course/course.service';
-
-
+import {LoaderBlockService} from './common/loaderBlock/loader.service';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
   ChangeDetectorRef,
-  CourseService
+  CourseService,
+  LoaderBlockService
+
 ];
 
 type StoreType = {
@@ -72,7 +71,8 @@ type StoreType = {
     CourseSimpleComponent,
     NoContentComponent,
     CourseToolboxComponent,
-    CourseSimpleNotOnPushComponent
+    CourseSimpleNotOnPushComponent,
+    LoaderBlockComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

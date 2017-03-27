@@ -17,7 +17,7 @@ export class HeaderLoginComponent {
   constructor(private loginService: LoginService,
               private cd: ChangeDetectorRef) {
     this.isOnLoginPage = RegExp('login').test(window.location.toString());
-    this.userLogin = 'Guest';
+    this.userLogin = 'guest';
     loginService.GetUserInfo().subscribe(
       (user) => {
         this.isUserAuthenticated = loginService.IsAuthenticated();

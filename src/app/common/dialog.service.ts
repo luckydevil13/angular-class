@@ -1,6 +1,6 @@
-import {Injectable, NgZone} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {default as swal} from 'sweetalert2';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class DialogService {
@@ -15,9 +15,6 @@ export class DialogService {
       cancelButtonColor: 'red',
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
-    }))
-
+    }));
   }
-
 }
-

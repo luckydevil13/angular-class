@@ -1,5 +1,6 @@
 <div class="user-profile">
-  <div>{{userLogin}}
+  <div>
+    <span *ngIf="!isOnLoginPage">{{userLogin}}</span>
     <br>
     <a *ngIf="!(isOnLoginPage || isUserAuthenticated)" href="/#/login">LogIn</a>
     <a *ngIf="isUserAuthenticated" href="#" (click)="logout()">Logout</a>
