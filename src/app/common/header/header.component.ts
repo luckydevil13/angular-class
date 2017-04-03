@@ -12,8 +12,4 @@ export class HeaderComponent {
   constructor(private loginService: LoginService) {
   }
 
-  public lastchange(): Date {
-    return new Date();
-  }
-
 }

@@ -6,8 +6,8 @@ export interface Course {
   readonly date: Date;
   readonly duration: number;
   readonly authors: string[];
-  /* tslint:disable:readonly-interface */
-  id?: number;
+  readonly topRated: boolean;
+  readonly id?: number;
 }
 
 @Component({
@@ -25,6 +25,7 @@ export class CourseComponent implements Course {
     public date: Date,
     public duration: number,
     public authors: string[],
+    public topRated: boolean,
     public id?: number
   ) { }
 

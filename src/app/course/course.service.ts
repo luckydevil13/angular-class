@@ -14,6 +14,7 @@ const coursesData: Course[] = [
     date: new Date(),
     duration: 154,
     authors: ['Bob Shafer', 'Neel Yound'],
+    topRated: false,
     id: 0
   },
 
@@ -28,6 +29,7 @@ const coursesData: Course[] = [
     date: new Date(2015, 11, 7),
     duration: 25,
     authors: ['Bob Shafer'],
+    topRated: false,
     id: 1
   },
 
@@ -39,9 +41,10 @@ const coursesData: Course[] = [
     'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
     'software like Aldus PageMaker including versions of Lorem Ipsum.' +
     'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took',
-    date: new Date(2016, 11, 17),
+    date: new Date(2017, 3, 14),
     duration: 104,
     authors: ['Noel Young'],
+    topRated: true,
     id: 2
   },
 
@@ -50,6 +53,7 @@ const coursesData: Course[] = [
 @Injectable()
 export class CourseService {
   private courses: any = Observable.of(...coursesData);
+  private curentSearchFilter: string;
 
   public getList(): Observable<Course[]> {
     return this.courses;
@@ -69,5 +73,12 @@ export class CourseService {
 
   public removeItem(course: Course): void {
     this.courses = this.courses.filter((currentCourse) => currentCourse.id !== course.id);
+  }
+
+  public curentSearchValue(value?: string): string {
+    if (value !== undefined ) {
+      this.curentSearchFilter = value;
+    }
+    return this.curentSearchFilter;
   }
 }

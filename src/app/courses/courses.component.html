@@ -2,17 +2,10 @@
   <sg-header></sg-header>
   <main>
     <sg-course-toolbox></sg-course-toolbox>
+    <div *ngIf="!(courses | orderBy | searchFilter).length" class="no-course-data">No data. Feel free to add course</div>
     <ul>
-
-      <li *ngFor="let course of courses">
+      <li *ngFor="let course of courses | orderBy | searchFilter">
         <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
-      </li>
-
-      <hr style="margin: 100px">
-
-      <li *ngFor="let course of courses">
-        <sg-simple-course-no-on-push [course]="course"
-                                     (notifyParent)="getNotification($event)"></sg-simple-course-no-on-push>
       </li>
     </ul>
   </main>

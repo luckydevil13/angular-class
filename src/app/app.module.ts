@@ -33,7 +33,6 @@ import { LoaderBlockComponent } from './common/loaderBlock/loader.component';
 import { CoursesComponent } from './courses';
 import { CourseToolboxComponent } from './courses/courseToolbox';
 import { CourseSimpleComponent } from './courses/courseSimple';
-import { CourseSimpleNotOnPushComponent } from './courses/courseSimple/courseSimple.notOnPush.component';
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
@@ -43,6 +42,14 @@ import '../styles/headings.css';
 import { CourseService } from './course/course.service';
 import {LoaderBlockService} from './common/loaderBlock/loader.service';
 
+// Directives
+import {СourseBorderDirective} from './courses/courses.directive';
+
+// Pipes
+import {CourseDurationPipe} from './course/course.duration.pipe';
+import {CourseOrderByPipe} from './course/course.orderBy.pipe';
+import {CourseSearchFilterPipe} from './course/course.searchFilter.pipe';
+
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
@@ -50,7 +57,6 @@ const APP_PROVIDERS: any = [
   ChangeDetectorRef,
   CourseService,
   LoaderBlockService
-
 ];
 
 type StoreType = {
@@ -71,8 +77,12 @@ type StoreType = {
     CourseSimpleComponent,
     NoContentComponent,
     CourseToolboxComponent,
-    CourseSimpleNotOnPushComponent,
-    LoaderBlockComponent
+    LoaderBlockComponent,
+    СourseBorderDirective,
+    CourseDurationPipe,
+    CourseOrderByPipe,
+    CourseSearchFilterPipe
+
   ],
   imports: [ // import Angular's modules
     BrowserModule,

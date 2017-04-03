@@ -1,10 +1,12 @@
-<span class="red">last change of block: {{lastchange() | date:'medium'}}</span>
-<div class="course">
+<div  class="course" [ngClass]="{greenBackground: course.topRated}" [sgHighLightBorderCourse]="course.date">
   <div>
     <div class="course-header">
-      <span><b>{{course.title}}</b></span>
-      <span>{{course.duration}} min</span>
-      <span>{{course.date.toISOString().slice(0, 10)}}</span>
+      <span><b>{{course.title | uppercase }}</b></span>
+      <span>{{course.duration | courseDuration: course.duration}}
+        <span *ngIf="course.topRated"><b>✮</b></span>
+      </span>
+
+      <span>{{course.date | date }}</span>
     </div>
     <p class="course-desc">l{{course.description}}</p>
   </div>

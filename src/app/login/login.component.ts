@@ -36,7 +36,7 @@ export class LoginComponent {
               this.loaderBlockService.Hide();
               location.href = '/#/courses';
             },
-            1000);
+            500);
         }
       );
     }

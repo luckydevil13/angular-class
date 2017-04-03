@@ -36,10 +36,6 @@ export class CourseSimpleComponent {
     this.subOnStable = this.ngZone.onStable.subscribe(this.onZoneStable.bind(this));
   }
 
-  public lastchange(): Date {
-    return new Date();
-  }
-
   public deleteCourse(course: Course): void {
     this.loaderBlockService.Show();
     // due affected parent component profiling
@@ -52,7 +48,7 @@ export class CourseSimpleComponent {
         this.loaderBlockService.Hide();
         this.notifyParent.emit({action: 'delete', course});
       },
-      1000);
+      500);
   }
 
   private onZoneUnstable(): void {
@@ -62,8 +58,8 @@ export class CourseSimpleComponent {
   private onZoneStable(): void {
     this.stopTimer = performance.now();
     if (this.startTimer) {
-      console.log('= in ' + this.constructor.name + ' =');
-      console.log('unStable -> Stable: ' + Math.floor((this.stopTimer - this.startTimer ) * 1000) / 1000 + ' ms');
+      // console.log('= in ' + this.constructor.name + ' =');
+      // console.log('unStable -> Stable: ' + Math.floor((this.stopTimer - this.startTimer ) * 1000) / 1000 + ' ms');
     }
   }
 
