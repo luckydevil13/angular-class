@@ -4,8 +4,8 @@ import {LoaderBlockService} from './loader.service';
 @Component({
   selector: 'sg-loadblock',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'loader.component.html',
-  styleUrls: ['loader.component.css'],
+  templateUrl: './loader.component.html',
+  styleUrls: ['./loader.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoaderBlockComponent implements OnInit {
@@ -16,7 +16,7 @@ export class LoaderBlockComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.loaderBlockService.show.subscribe((val: boolean) => {
+    this.loaderBlockService.display.subscribe((val: boolean) => {
       this.cd.markForCheck();
       console.log('LoaderBlock:' + val);
       this.show = val;

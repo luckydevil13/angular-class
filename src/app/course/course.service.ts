@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Course} from './course.component';
 import {Observable} from 'rxjs';
+import {Course} from './course.interface.Course';
 
 const coursesData: Course[] = [
   {
@@ -52,10 +52,10 @@ const coursesData: Course[] = [
 
 @Injectable()
 export class CourseService {
-  private courses: any = Observable.of(...coursesData);
+  private courses: Observable<Course> = Observable.of(...coursesData);
   private curentSearchFilter: string;
 
-  public getList(): Observable<Course[]> {
+  public getList(): Observable<Course> {
     return this.courses;
   }
 

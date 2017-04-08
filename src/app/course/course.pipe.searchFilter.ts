@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Course} from './course.component';
 import {CourseService} from './course.service';
+import {Course} from './course.interface.Course';
 
 @Pipe({name: 'searchFilter'})
 export class CourseSearchFilterPipe implements PipeTransform {

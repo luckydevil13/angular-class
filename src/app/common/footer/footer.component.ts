@@ -3,11 +3,10 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 @Component({
   selector: 'sg-footer',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'footer.component.html',
-  styleUrls: ['footer.component.css'],
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class FooterComponent implements OnInit {
   constructor() {
     return this;

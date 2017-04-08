@@ -4,11 +4,10 @@ import {LoginService} from '../../../login/login.service';
 @Component({
   selector: 'sg-header-login',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class HeaderLoginComponent {
   private isUserAuthenticated: boolean;
   private userLogin: string;

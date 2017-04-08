@@ -1,22 +1,12 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-
-export interface Course {
-  readonly title: string;
-  readonly description: string;
-  readonly date: Date;
-  readonly duration: number;
-  readonly authors: string[];
-  readonly topRated: boolean;
-  readonly id?: number;
-}
+import {Course} from './course.interface.Course';
 
 @Component({
   selector: `sg-course`,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'course.component.html',
+  templateUrl: './course.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class CourseComponent implements Course {
 
   constructor(

@@ -4,7 +4,7 @@ import {LoginService} from '../../../login/login.service';
 @Component({
   selector: 'sg-breadcrumb',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'breadcrumb.component.html',
+  templateUrl: './breadcrumb.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbComponent {

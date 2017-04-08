@@ -7,16 +7,16 @@ import {
   ViewEncapsulation,
   NgZone
 } from '@angular/core';
-import {Course} from '../../course';
 import {DialogService} from '../../common/dialog.service';
-import {LoaderBlockService} from '../../common/loaderBlock/loader.service';
+import {LoaderBlockService} from '../../common/loader/loader.service';
+import {Course} from '../../course/course.interface.Course';
 
 @Component({
   selector: 'sg-simple-course',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'courseSimple.component.html',
+  templateUrl: './course-simple.component.html',
   styleUrls: [
-    'courseSimple.component.css',
+    './course-simple.component.css',
     '../../common/dialog.service.css'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -37,18 +37,16 @@ export class CourseSimpleComponent {
   }
 
   public deleteCourse(course: Course): void {
-    this.loaderBlockService.Show();
-    // due affected parent component profiling
-    // this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
-    //   () => this.notifyParent.emit({action: 'delete', course}),
-    //   () => undefined
-    // );
-    setTimeout(
-      () => {
-        this.loaderBlockService.Hide();
-        this.notifyParent.emit({action: 'delete', course});
-      },
-      500);
+    this.loaderBlockService.show();
+    this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
+      () => setTimeout(
+        () => {
+          this.loaderBlockService.hide();
+          this.notifyParent.emit({action: 'delete', course});
+        },
+        500),
+      () => this.loaderBlockService.hide(),
+    );
   }
 
   private onZoneUnstable(): void {

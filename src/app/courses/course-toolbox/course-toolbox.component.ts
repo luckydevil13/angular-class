@@ -4,11 +4,10 @@ import {CourseService} from '../../course/course.service';
 @Component({
   selector: 'sg-course-toolbox',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'courseToolbox.component.html',
-  styleUrls: ['courseToolbox.component.css'],
+  templateUrl: './course-toolbox.component.html',
+  styleUrls: ['./course-toolbox.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class CourseToolboxComponent {
   public searchValue: string = 'search me';
 

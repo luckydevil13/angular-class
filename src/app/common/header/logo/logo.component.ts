@@ -3,11 +3,10 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 @Component({
   selector: 'sg-logo',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'logo.component.html',
-  styleUrls: ['logo.component.css'],
+  templateUrl: './logo.component.html',
+  styleUrls: ['./logo.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class LogoComponent {
 
 }

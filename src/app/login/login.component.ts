@@ -1,21 +1,15 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from './login.service';
-import {LoaderBlockService} from '../common/loaderBlock/loader.service';
-
-export interface User {
-  readonly login: string;
-  readonly password?: string;
-  readonly token?: string;
-}
+import {LoaderBlockService} from '../common/loader/loader.service';
+import {User} from './login.interface.User';
 
 @Component({
   selector: 'sg-login',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class LoginComponent {
 
   constructor(private loginService: LoginService,
@@ -25,7 +19,7 @@ export class LoginComponent {
   public doLogin(user: User): void {
     if (user.login && user.password) {
 
-      this.loaderBlockService.Show();
+      this.loaderBlockService.show();
 
       this.loginService.doLogin(user).subscribe(
         () => undefined,
@@ -33,7 +27,7 @@ export class LoginComponent {
         () => {
           setTimeout(
             () => {
-              this.loaderBlockService.Hide();
+              this.loaderBlockService.hide();
               location.href = '/#/courses';
             },
             500);

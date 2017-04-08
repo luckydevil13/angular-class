@@ -1,20 +1,20 @@
 import {Injectable} from '@angular/core';
-import {User} from './login.component';
 import {Observable} from 'rxjs';
+import {User} from './login.interface.User';
 
 const userKeyName: string = 'currentUser';
 const guest: User = {login: 'guest'};
 
 @Injectable()
 export class LoginService {
-  private user: any;
+  private user: Observable<User>;
 
   constructor() {
-    const user: string = JSON.parse(localStorage.getItem('currentUser')) || guest;
+    const user: User = JSON.parse(localStorage.getItem('currentUser')) || guest;
     this.user = Observable.from([user]);
   }
 
-  public doLogin(user: User): Observable<any> {
+  public doLogin(user: User): Observable<User> {
     console.log('Do Login');
     this.user = Observable.from([user]);
     localStorage.setItem(userKeyName, JSON.stringify(
@@ -39,7 +39,7 @@ export class LoginService {
     return isAuthenticated;
   }
 
-  public GetUserInfo(): Observable<any> {
+  public GetUserInfo(): Observable<User> {
     return this.user;
   }
 

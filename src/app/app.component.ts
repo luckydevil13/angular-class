@@ -20,7 +20,7 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.component.css'
   ],
-  templateUrl: 'app.component.html',
+  templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })

@@ -4,8 +4,7 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class DialogService {
-
-  public confirm(title: string, message: string): Observable<any> {
+  public confirm<T>(title: string, message: string): Observable<T> {
     return Observable.fromPromise(swal({
       title,
       text: message,

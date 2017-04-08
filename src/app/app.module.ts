@@ -29,10 +29,10 @@ import { AppState, InternalStateType } from './app.service';
 
 // Components
 import { HomeComponent } from './home';
-import { LoaderBlockComponent } from './common/loaderBlock/loader.component';
+import { LoaderBlockComponent } from './common/loader/loader.component';
 import { CoursesComponent } from './courses';
-import { CourseToolboxComponent } from './courses/courseToolbox';
-import { CourseSimpleComponent } from './courses/courseSimple';
+import { CourseToolboxComponent } from './courses/course-toolbox';
+import { CourseSimpleComponent } from './courses/course-simple';
 import { NoContentComponent } from './no-content';
 
 import '../styles/styles.scss';
@@ -40,15 +40,15 @@ import '../styles/headings.css';
 
 // Servers
 import { CourseService } from './course/course.service';
-import {LoaderBlockService} from './common/loaderBlock/loader.service';
+import {LoaderBlockService} from './common/loader/loader.service';
 
 // Directives
 import {СourseBorderDirective} from './courses/courses.directive';
 
 // Pipes
-import {CourseDurationPipe} from './course/course.duration.pipe';
-import {CourseOrderByPipe} from './course/course.orderBy.pipe';
-import {CourseSearchFilterPipe} from './course/course.searchFilter.pipe';
+import {CourseDurationPipe} from './course/course.pipe.duration';
+import {CourseOrderByPipe} from './course/course.pipe.orderBy';
+import {CourseSearchFilterPipe} from './course/course.pipe.searchFilter';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
