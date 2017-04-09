@@ -1,7 +1,9 @@
-import {Component, OnInit, DoCheck, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
+import {Component, DoCheck, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
 import {CourseService} from '../course/course.service';
 import {CoursesNotifyEvent} from './courses.interface.CourseNotifyEvent';
 import {Course} from '../course/course.interface.Course';
+
+const filterOutdatedCourses: number = -14;
 
 @Component({
   selector: 'sg-courses',
@@ -10,20 +12,23 @@ import {Course} from '../course/course.interface.Course';
   styleUrls: ['./courses.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesComponent implements OnInit, DoCheck {
+export class CoursesComponent implements DoCheck {
   public courses: Course[];
+  private courseServiceSubscription: any;
 
   constructor(private courseService: CourseService) {
   }
 
-  public ngOnInit(): void {
-    this.courses = [];
-    this.courseService.getList().subscribe((course) => this.courses.push(course));
-  }
-
   public ngDoCheck(): void {
     this.courses = [];
-    this.courseService.getList().subscribe((course) => this.courses.push(course));
+    this.courseServiceSubscription = this.courseService.getList()
+      .filter((course) => {
+          let dateDiff: number = this.dateDiffInDays(course.date);
+          return dateDiff > filterOutdatedCourses;
+        }
+      )
+      .map((course) => { return course; })
+      .subscribe((course) => this.courses.push(course));
   }
 
   public getNotification(evt: CoursesNotifyEvent): void {
@@ -31,6 +36,16 @@ export class CoursesComponent implements OnInit, DoCheck {
     if (evt.action === 'delete') {
       this.courseService.removeItem(evt.course);
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.courseServiceSubscription.unsubscribe();
+  }
+
+  private dateDiffInDays(dt: Date): number {
+    let now: Date = new Date();
+    return Math.floor((Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate())
+      - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) ) / (1000 * 60 * 60 * 24));
   }
 
 }

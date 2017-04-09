@@ -2,22 +2,13 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {Course} from './course.interface.Course';
 
 @Component({
-  selector: `sg-course`,
-  encapsulation: ViewEncapsulation.None,
+  selector: 'sg-course',
+  encapsulation: ViewEncapsulation.Native,
   templateUrl: './course.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./course.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseComponent implements Course {
-
-  constructor(
-    public title: string,
-    public description: string,
-    public date: Date,
-    public duration: number,
-    public authors: string[],
-    public topRated: boolean,
-    public id?: number
-  ) { }
+export class CourseComponent {
 
   public getCourse(id: number): Course {
     return;
@@ -32,6 +23,14 @@ export class CourseComponent implements Course {
   }
 
   public deleteCourse(id: number): boolean {
+    return;
+  }
+
+  public doSave(): void {
+    return;
+  }
+
+  public doCancel(): void {
     return;
   }
 

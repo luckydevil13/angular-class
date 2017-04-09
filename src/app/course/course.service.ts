@@ -20,7 +20,7 @@ const coursesData: Course[] = [
 
   {
     title: 'Course 2',
-    description: 'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
+    description: 'a galley of type and scrambledly five centuries, but' +
     'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
     'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
     'software like Aldus PageMaker including versions of Lorem Ipsum.' +
@@ -35,7 +35,7 @@ const coursesData: Course[] = [
 
   {
     title: 'Course 3',
-    description: 'a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but' +
+    description: 'a galley of type and scrambled it to make a type specimen book. It has survived centuries, but' +
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
     'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
     'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
@@ -46,6 +46,36 @@ const coursesData: Course[] = [
     authors: ['Noel Young'],
     topRated: true,
     id: 2
+  },
+
+  {
+    title: 'Course 4',
+    description: 'Ipsum has been the industrys stturies, but' +
+    'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
+    'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
+    'software like Aldus PageMaker including versions of Lorem Ipsum.' +
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
+    'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took',
+    date: new Date(),
+    duration: 215,
+    authors: ['Bob Shafer'],
+    topRated: false,
+    id: 3
+  },
+
+  {
+    title: 'Course 5',
+    description: 'PageMaker including versions of Lorem Ipsum. It has survived not only five centuries, but' +
+    'also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s ' +
+    'with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing' +
+    'software like Aldus PageMaker including versions of Lorem Ipsum.' +
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
+    'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took',
+    date: new Date(2016, 11, 7),
+    duration: 253,
+    authors: ['Bob Shafer', 'Neel Yound'],
+    topRated: false,
+    id: 4
   },
 
 ];

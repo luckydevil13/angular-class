@@ -28,6 +28,7 @@ export class CourseSimpleComponent {
   private startTimer: number;
   private subOnUnstable: any;
   private subOnStable: any;
+  private confirmSubscribtion: any;
 
   constructor(private dialogService: DialogService,
               private ngZone: NgZone,
@@ -38,7 +39,8 @@ export class CourseSimpleComponent {
 
   public deleteCourse(course: Course): void {
     this.loaderBlockService.show();
-    this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
+
+    this.confirmSubscribtion = this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
       () => setTimeout(
         () => {
           this.loaderBlockService.hide();
@@ -64,6 +66,9 @@ export class CourseSimpleComponent {
   public ngOnDestroy(): void {
     this.subOnUnstable.unsubscribe();
     this.subOnStable.unsubscribe();
+    if (this.confirmSubscribtion) {
+      this.confirmSubscribtion.unsubscribe();
+    }
   }
 
 }

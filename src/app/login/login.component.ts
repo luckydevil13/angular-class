@@ -5,12 +5,13 @@ import {User} from './login.interface.User';
 
 @Component({
   selector: 'sg-login',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Native,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
+  private loginServiceSubscription: any;
 
   constructor(private loginService: LoginService,
               private loaderBlockService: LoaderBlockService) {
@@ -18,10 +19,8 @@ export class LoginComponent {
 
   public doLogin(user: User): void {
     if (user.login && user.password) {
-
       this.loaderBlockService.show();
-
-      this.loginService.doLogin(user).subscribe(
+      this.loginServiceSubscription = this.loginService.doLogin(user).subscribe(
         () => undefined,
         () => undefined,
         () => {
@@ -35,4 +34,9 @@ export class LoginComponent {
       );
     }
   }
+
+  public ngOnDestroy(): void {
+    this.loginServiceSubscription.unsubscribe();
+  }
+
 }

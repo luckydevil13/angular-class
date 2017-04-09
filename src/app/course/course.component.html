@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <sg-header></sg-header>
+  <main>
+
+    <div class="form">
+      <div class="form-wrapper">
+        <div>
+          <label>Title</label>
+          <input type="text" size="60"/>
+        </div>
+        <div>
+          <label>Description</label>
+          <textarea rows="5" cols="60" name="text"></textarea>
+        </div>
+        <div>
+          <label>Date</label>
+          <sg-course-date></sg-course-date>
+        </div>
+        <div>
+          <label>Duration</label>
+          <sg-course-duration></sg-course-duration>
+        </div>
+
+        <div>
+          <label>Authors</label>
+          <sg-course-authors></sg-course-authors>
+        </div>
+
+        <div class="buttons">
+          <button (click)="doSave()">Save</button>
+          <button (click)="doCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <sg-footer></sg-footer>
+</div>

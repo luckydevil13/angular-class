@@ -7,6 +7,9 @@ export class CourseDurationPipe implements PipeTransform {
   }
 
   private convertMinsToHrsMin(minutes: number): string {
+    if (isNaN(minutes)) {
+       return;
+    }
     let h: number = Math.floor(minutes / 60);
     let m: number = minutes % 60;
     let result: string = h ? h + 'h ' : '';

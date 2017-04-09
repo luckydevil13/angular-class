@@ -12,12 +12,13 @@ export class HeaderLoginComponent {
   private isUserAuthenticated: boolean;
   private userLogin: string;
   private isOnLoginPage: boolean;
+  private loginServiceSubscription: any;
 
   constructor(private loginService: LoginService,
               private cd: ChangeDetectorRef) {
     this.isOnLoginPage = RegExp('login').test(window.location.toString());
     this.userLogin = 'guest';
-    loginService.GetUserInfo().subscribe(
+    this.loginServiceSubscription = loginService.GetUserInfo().subscribe(
       (user) => {
         this.isUserAuthenticated = loginService.IsAuthenticated();
         this.userLogin = user.login;
@@ -30,4 +31,9 @@ export class HeaderLoginComponent {
   public logout(): void {
     this.loginService.doLogout();
   }
+
+  public ngOnDestroy(): void {
+    this.loginServiceSubscription.unsubscribe();
+  }
+
 }

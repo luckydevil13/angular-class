@@ -34,6 +34,10 @@ import { CoursesComponent } from './courses';
 import { CourseToolboxComponent } from './courses/course-toolbox';
 import { CourseSimpleComponent } from './courses/course-simple';
 import { NoContentComponent } from './no-content';
+import { CourseComponent } from './course';
+import { CourseDateComponent } from './course/date/date.component';
+import { CourseAuthorsComponent } from './course/authors/authors.component';
+import { CourseDurationComponent } from './course/duration/duration.component';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -81,8 +85,11 @@ type StoreType = {
     СourseBorderDirective,
     CourseDurationPipe,
     CourseOrderByPipe,
-    CourseSearchFilterPipe
-
+    CourseSearchFilterPipe,
+    CourseComponent,
+    CourseDateComponent,
+    CourseAuthorsComponent,
+    CourseDurationComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

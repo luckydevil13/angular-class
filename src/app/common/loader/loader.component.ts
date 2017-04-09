@@ -1,4 +1,7 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation, ChangeDetectorRef} from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation, ChangeDetectorRef,
+  OnDestroy
+} from '@angular/core';
 import {LoaderBlockService} from './loader.service';
 
 @Component({
@@ -8,7 +11,7 @@ import {LoaderBlockService} from './loader.service';
   styleUrls: ['./loader.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoaderBlockComponent implements OnInit {
+export class LoaderBlockComponent implements OnInit, OnDestroy {
   public show: boolean;
 
   constructor(private loaderBlockService: LoaderBlockService,
@@ -21,5 +24,9 @@ export class LoaderBlockComponent implements OnInit {
       console.log('LoaderBlock:' + val);
       this.show = val;
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.loaderBlockService.display.unsubscribe();
   }
 }

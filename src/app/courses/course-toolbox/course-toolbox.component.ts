@@ -14,9 +14,13 @@ export class CourseToolboxComponent {
   constructor(private courseService: CourseService) {
   }
 
-  public searchCourse(value: string): void {
+  protected searchCourse(value: string): void {
     console.log('Searching for ' + value);
     this.searchValue = value;
     this.courseService.curentSearchValue(value);
+  }
+
+  protected addCourse(): void {
+    location.href = '/#/course';
   }
 }
