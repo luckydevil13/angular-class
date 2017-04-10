@@ -15,7 +15,7 @@
         "no-var-keyword": true,
         "readonly-interface": true,
 //        "readonly-indexer": true,
-        "readonly-array": true,
+//        "readonly-array": true,
         "no-mixed-interface": true,
         "directive-selector": [true, "attribute", "sg", "camelCase"],
         "component-selector": [true, "element", "sg", "kebab-case"],

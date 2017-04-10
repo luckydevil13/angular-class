@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject, Subscription} from 'rxjs';
 import {User} from './login.interface.User';
 
 const userKeyName: string = 'currentUser';
@@ -8,7 +8,7 @@ const guest: User = {login: 'guest'};
 @Injectable()
 export class LoginService {
   private user: Observable<User>;
-  private userServiceSubscription: any;
+  private userServiceSubscription: Subscription;
   public lastTenLogins: ReplaySubject<string>;
 
   constructor() {

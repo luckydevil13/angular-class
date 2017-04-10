@@ -2,6 +2,7 @@ import {Component, DoCheck, ViewEncapsulation, ChangeDetectionStrategy} from '@a
 import {CourseService} from '../course/course.service';
 import {CoursesNotifyEvent} from './courses.interface.CourseNotifyEvent';
 import {Course} from '../course/course.interface.Course';
+import {Subscription} from 'rxjs';
 
 const filterOutdatedCourses: number = -14;
 
@@ -14,7 +15,7 @@ const filterOutdatedCourses: number = -14;
 })
 export class CoursesComponent implements DoCheck {
   public courses: Course[];
-  private courseServiceSubscription: any;
+  private courseServiceSubscription: Subscription;
 
   constructor(private courseService: CourseService) {
   }

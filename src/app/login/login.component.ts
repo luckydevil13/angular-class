@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {LoginService} from './login.service';
 import {LoaderBlockService} from '../common/loader/loader.service';
 import {User} from './login.interface.User';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'sg-login',
@@ -11,7 +12,7 @@ import {User} from './login.interface.User';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
-  private loginServiceSubscription: any;
+  private loginServiceSubscription: Subscription;
 
   constructor(private loginService: LoginService,
               private loaderBlockService: LoaderBlockService) {

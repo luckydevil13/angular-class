@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from '../../../login/login.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'sg-header-login',
@@ -12,7 +13,7 @@ export class HeaderLoginComponent {
   private isUserAuthenticated: boolean;
   private userLogin: string;
   private isOnLoginPage: boolean;
-  private loginServiceSubscription: any;
+  private loginServiceSubscription: Subscription;
 
   constructor(private loginService: LoginService,
               private cd: ChangeDetectorRef) {

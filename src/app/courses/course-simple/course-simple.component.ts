@@ -10,6 +10,7 @@ import {
 import {DialogService} from '../../common/dialog.service';
 import {LoaderBlockService} from '../../common/loader/loader.service';
 import {Course} from '../../course/course.interface.Course';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'sg-simple-course',
@@ -23,12 +24,12 @@ import {Course} from '../../course/course.interface.Course';
 })
 export class CourseSimpleComponent {
   @Input() public course: Course;
-  @Output() public notifyParent: EventEmitter<any> = new EventEmitter();
+  @Output() public notifyParent: EventEmitter<Object> = new EventEmitter();
   private stopTimer: number;
   private startTimer: number;
-  private subOnUnstable: any;
-  private subOnStable: any;
-  private confirmSubscribtion: any;
+  private subOnUnstable: Subscription;
+  private subOnStable: Subscription;
+  private confirmSubscribtion: Subscription;
 
   constructor(private dialogService: DialogService,
               private ngZone: NgZone,

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
 import {LoginService} from '../../../login/login.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'sg-breadcrumb',
@@ -9,7 +10,7 @@ import {LoginService} from '../../../login/login.service';
 })
 export class BreadcrumbComponent {
   private isUserAuthenticated: boolean;
-  private userInfoSubscription: any;
+  private userInfoSubscription: Subscription;
 
   constructor(private loginService: LoginService,
               private cd: ChangeDetectorRef) {
