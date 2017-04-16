@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {Http, HttpModule, RequestOptions, XHRBackend} from '@angular/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import {
   ApplicationRef, ChangeDetectorRef,
   NgModule
@@ -45,14 +47,14 @@ import '../styles/headings.css';
 // Servers
 import { CourseService } from './course/course.service';
 import {LoaderBlockService} from './common/loader/loader.service';
+import {AuthorizedHttp} from './common/services/authorized-http.service';
 
 // Directives
 import {СourseBorderDirective} from './courses/courses.directive';
 
 // Pipes
 import {CourseDurationPipe} from './course/course.pipe.duration';
-import {CourseOrderByPipe} from './course/course.pipe.orderBy';
-import {CourseSearchFilterPipe} from './course/course.pipe.searchFilter';
+
 
 // Application wide providers
 const APP_PROVIDERS: any = [
@@ -60,7 +62,14 @@ const APP_PROVIDERS: any = [
   AppState,
   ChangeDetectorRef,
   CourseService,
-  LoaderBlockService
+  LoaderBlockService,
+  { provide: Http,
+    useFactory: (
+      backend: XHRBackend,
+      defaultOptions: RequestOptions) =>
+      new AuthorizedHttp(backend, defaultOptions),
+    deps: [XHRBackend, RequestOptions]
+  }
 ];
 
 type StoreType = {
@@ -84,8 +93,6 @@ type StoreType = {
     LoaderBlockComponent,
     СourseBorderDirective,
     CourseDurationPipe,
-    CourseOrderByPipe,
-    CourseSearchFilterPipe,
     CourseComponent,
     CourseDateComponent,
     CourseAuthorsComponent,
@@ -97,7 +104,8 @@ type StoreType = {
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     AppCommonModule,
-    LoginModule
+    LoginModule,
+    NgxPaginationModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

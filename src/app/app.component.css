@@ -36,3 +36,8 @@ button {
 .greenBackground {
   background-color: #a5dc86;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}

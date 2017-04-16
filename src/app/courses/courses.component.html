@@ -1,13 +1,20 @@
 <div class="wrapper">
   <sg-header></sg-header>
   <main>
-    <sg-course-toolbox></sg-course-toolbox>
-    <div *ngIf="!(courses | orderBy | searchFilter).length" class="no-course-data">No data. Feel free to add course</div>
-    <ul>
-      <li *ngFor="let course of courses | orderBy | searchFilter">
-        <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
-      </li>
-    </ul>
+    <sg-course-toolbox (notifyParent)="getNotification($event)"></sg-course-toolbox>
+
+    <div class="center">
+      <pagination-controls autoHide="true" (pageChange)="getPage($event)"></pagination-controls>
+    </div>
+
+      <div *ngIf="!courses.length" class="no-course-data">No data. Feel free to add course</div>
+      <ul>
+        <li *ngFor="let course of courses | paginate: { itemsPerPage: defaultCoursesOnPageCount, currentPage: page, totalItems: coursesCount }">
+          <sg-simple-course [course]="course" (notifyParent)="getNotification($event)"></sg-simple-course>
+        </li>
+      </ul>
+
+
   </main>
   <sg-footer></sg-footer>
 </div>

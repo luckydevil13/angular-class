@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {CourseService} from '../../course/course.service';
 
 @Component({
@@ -9,7 +9,8 @@ import {CourseService} from '../../course/course.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseToolboxComponent {
-  public searchValue: string = 'search me';
+  @Input() public searchValue: string = '';
+  @Output() public notifyParent: EventEmitter<Object> = new EventEmitter();
 
   constructor(private courseService: CourseService) {
   }
@@ -17,7 +18,7 @@ export class CourseToolboxComponent {
   protected searchCourse(value: string): void {
     console.log('Searching for ' + value);
     this.searchValue = value;
-    this.courseService.curentSearchValue(value);
+    this.notifyParent.emit({action: 'search', value});
   }
 
   protected addCourse(): void {

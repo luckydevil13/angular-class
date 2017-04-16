@@ -42,12 +42,10 @@ export class CourseSimpleComponent {
     this.loaderBlockService.show();
 
     this.confirmSubscribtion = this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
-      () => setTimeout(
         () => {
-          this.loaderBlockService.hide();
           this.notifyParent.emit({action: 'delete', course});
         },
-        500),
+      () => undefined,
       () => this.loaderBlockService.hide(),
     );
   }
