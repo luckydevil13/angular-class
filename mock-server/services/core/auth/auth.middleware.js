@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const url = require('url');
+const util = require('util');
 
 module.exports = (server) => {
 
 	router.post('/auth/login', (req, res, next) => {
+    console.log(util.inspect(req.body, false, 1));
 		let users = server.db.getState().users,
 			matchedUser = users.find((user) => {
-				console.log(user);
-				return user.login.toUpperCase() === req.body.login.toUpperCase();
+				return user.login === req.body.login;
 			});
 
 		if(!matchedUser) {
@@ -19,7 +20,7 @@ module.exports = (server) => {
 			res.status(401).send("Wrong password");
 		}
 	});
-		
+
 	router.post('/auth/userinfo', (req, res, next) => {
 		let users = server.db.getState().users,
 			matchedUser = users.find((user) => {

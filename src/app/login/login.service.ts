@@ -1,57 +1,45 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {Observable, ReplaySubject, Subscription} from 'rxjs';
 import {User} from './login.interface.User';
-
-const userKeyName: string = 'currentUser';
-const guest: User = {login: 'guest'};
+import {AuthorizedHttp} from '../common/services/authorized-http.service';
+export const currentTokenName: string = 'currentToken';
 
 @Injectable()
-export class LoginService {
-  private user: Observable<User>;
+export class LoginService implements OnDestroy {
+  private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004/auth' : 'http://server.com/auth';
   private userServiceSubscription: Subscription;
+  private user: User;
   public lastTenLogins: ReplaySubject<string>;
 
-  constructor() {
-    const user: User = JSON.parse(localStorage.getItem('currentUser')) || guest;
-    this.user = Observable.from([user]);
+  constructor(private http: AuthorizedHttp) {
     this.lastTenLogins = new ReplaySubject<string>(10, 10);
   }
 
-  public doLogin(user: User): Observable<User> {
-    this.user = Observable.from([user]);
-    localStorage.setItem(userKeyName, JSON.stringify(
-        {
-          login: user.login,
-          token: this.generateToken()
+  public doLogin(user: User): Observable<Response> {
+    return this.http.post(this.urlEndPoint + '/login', user)
+      .map((res) => res.json()).do(
+        (res) => {
+          localStorage.setItem(currentTokenName, JSON.stringify(res.token).replace(/(^"|"$)/g, ''));
         }
-      )
-    );
-    this.lastTenLogins.next(user.login + 'do login');
-    return this.user;
+      );
   }
 
   public doLogout(): void {
-    this.user = Observable.from([guest]);
-    localStorage.removeItem(userKeyName);
+    localStorage.removeItem(currentTokenName);
     this.lastTenLogins.next('logout');
+    this.user = <User>{};
   }
 
-  public IsAuthenticated(): boolean {
-    let isAuthenticated: boolean;
-    this.userServiceSubscription = this.user.subscribe((user) => isAuthenticated = user.login !== 'guest');
-    return isAuthenticated;
+  public isAuthenticated(): boolean {
+    return !!this.user;
   }
 
-  public GetUserInfo(): Observable<User> {
-    return this.user;
-  }
-
-  private generateToken(): string {
-    return Math.random().toString().substr(2);
+  public getUserInfo(): Observable<User> {
+    return this.http.post(this.urlEndPoint + '/userinfo', '')
+      .map((res) => this.user = res.json());
   }
 
   public ngOnDestroy(): void {
     this.userServiceSubscription.unsubscribe();
   }
-
 }

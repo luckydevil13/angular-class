@@ -10,7 +10,7 @@ import {CourseService} from '../../course/course.service';
 })
 export class CourseToolboxComponent {
   @Input() public searchValue: string = '';
-  @Output() public notifyParent: EventEmitter<Object> = new EventEmitter();
+  @Output() public notifyParent: EventEmitter<object> = new EventEmitter();
 
   constructor(private courseService: CourseService) {
   }

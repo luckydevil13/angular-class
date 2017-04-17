@@ -1,6 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnDestroy, OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import {LoginService} from '../../../login/login.service';
 import {Subscription} from 'rxjs';
+import {User} from '../../../login/login.interface.User';
 
 @Component({
   selector: 'sg-header-login',
@@ -9,32 +13,35 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderLoginComponent {
-  private isUserAuthenticated: boolean;
-  private userLogin: string;
+export class HeaderLoginComponent implements OnDestroy, OnInit {
+  private user: User = <User>{};
   private isOnLoginPage: boolean;
   private loginServiceSubscription: Subscription;
 
-  constructor(private loginService: LoginService,
+  constructor(public loginService: LoginService,
               private cd: ChangeDetectorRef) {
+  }
+
+  public ngOnInit(): void {
     this.isOnLoginPage = RegExp('login').test(window.location.toString());
-    this.userLogin = 'guest';
-    this.loginServiceSubscription = loginService.GetUserInfo().subscribe(
+    this.loginServiceSubscription = this.loginService.getUserInfo().subscribe(
       (user) => {
-        this.isUserAuthenticated = loginService.IsAuthenticated();
-        this.userLogin = user.login;
-      },
-      undefined,
-      () => this.cd.markForCheck()
+        this.user = user;
+        this.cd.markForCheck();
+      }
     );
   }
 
   public logout(): void {
+    this.user = <User>{};
     this.loginService.doLogout();
+    this.cd.markForCheck();
   }
 
   public ngOnDestroy(): void {
-    this.loginServiceSubscription.unsubscribe();
+    if (this.loginServiceSubscription) {
+      this.loginServiceSubscription.unsubscribe();
+    }
   }
 
 }

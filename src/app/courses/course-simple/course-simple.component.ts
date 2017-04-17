@@ -5,7 +5,7 @@ import {
   Input,
   Output,
   ViewEncapsulation,
-  NgZone
+  NgZone, OnDestroy
 } from '@angular/core';
 import {DialogService} from '../../common/dialog.service';
 import {LoaderBlockService} from '../../common/loader/loader.service';
@@ -22,32 +22,20 @@ import {Subscription} from 'rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseSimpleComponent {
-  @Input() public course: Course;
-  @Output() public notifyParent: EventEmitter<Object> = new EventEmitter();
+export class CourseSimpleComponent implements OnDestroy {
   private stopTimer: number;
   private startTimer: number;
   private subOnUnstable: Subscription;
   private subOnStable: Subscription;
   private confirmSubscribtion: Subscription;
+  @Input() public course: Course;
+  @Output() public notifyParent: EventEmitter<object> = new EventEmitter();
 
   constructor(private dialogService: DialogService,
               private ngZone: NgZone,
               private loaderBlockService: LoaderBlockService) {
     this.subOnUnstable = this.ngZone.onUnstable.subscribe(this.onZoneUnstable.bind(this));
     this.subOnStable = this.ngZone.onStable.subscribe(this.onZoneStable.bind(this));
-  }
-
-  public deleteCourse(course: Course): void {
-    this.loaderBlockService.show();
-
-    this.confirmSubscribtion = this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
-        () => {
-          this.notifyParent.emit({action: 'delete', course});
-        },
-      () => undefined,
-      () => this.loaderBlockService.hide(),
-    );
   }
 
   private onZoneUnstable(): void {
@@ -62,6 +50,16 @@ export class CourseSimpleComponent {
     }
   }
 
+  public deleteCourse(course: Course): void {
+    this.loaderBlockService.show();
+    this.confirmSubscribtion = this.dialogService.confirm('Delete ' + course.title, 'Do you really want to delete this course?').subscribe(
+      () => {
+        this.notifyParent.emit({action: 'delete', value: course});
+      },
+      () => undefined,
+      () => this.loaderBlockService.hide(),
+    );
+  }
   public ngOnDestroy(): void {
     this.subOnUnstable.unsubscribe();
     this.subOnStable.unsubscribe();

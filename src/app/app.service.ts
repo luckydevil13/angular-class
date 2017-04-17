@@ -6,8 +6,12 @@ export type InternalStateType = {
 
 @Injectable()
 export class AppState {
-
   public _state: InternalStateType = { };
+
+  private _clone(object: InternalStateType): any {
+    // simple object clone
+    return JSON.parse(JSON.stringify( object ));
+  }
 
   // already return a clone of the current state
   /* tslint:disable:typedef */
@@ -29,10 +33,5 @@ export class AppState {
   public set(prop: string, value: any) {
     // internally mutate our state
     return this._state[prop] = value;
-  }
-
-  private _clone(object: InternalStateType): any {
-    // simple object clone
-    return JSON.parse(JSON.stringify( object ));
   }
 }

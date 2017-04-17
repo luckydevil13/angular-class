@@ -55,7 +55,6 @@ import {СourseBorderDirective} from './courses/courses.directive';
 // Pipes
 import {CourseDurationPipe} from './course/course.pipe.duration';
 
-
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
@@ -63,7 +62,7 @@ const APP_PROVIDERS: any = [
   ChangeDetectorRef,
   CourseService,
   LoaderBlockService,
-  { provide: Http,
+  { provide: AuthorizedHttp,
     useFactory: (
       backend: XHRBackend,
       defaultOptions: RequestOptions) =>
@@ -128,7 +127,7 @@ export class AppModule {
     this.appState._state = store.state;
     // set input values
     if ('restoreInputValues' in store) {
-      let restoreInputValues: any = store.restoreInputValues;
+      const restoreInputValues: any = store.restoreInputValues;
       setTimeout(restoreInputValues);
     }
 

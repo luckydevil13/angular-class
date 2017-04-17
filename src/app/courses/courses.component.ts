@@ -1,4 +1,6 @@
-import {Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, Input} from '@angular/core';
+import {
+  Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Input, OnDestroy, OnInit
+} from '@angular/core';
 import {CourseService} from '../course/course.service';
 import {CoursesNotifyEvent} from './courses.interface.CourseNotifyEvent';
 import {Course} from '../course/course.interface.Course';
@@ -12,10 +14,11 @@ import {LoaderBlockService} from '../common/loader/loader.service';
   styleUrls: ['./courses.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesComponent {
-  @Input('data') public courses: Course[];
+export class CoursesComponent implements OnDestroy, OnInit {
   private courseServiceSubscription: Subscription;
   private courseServiceSubscription2: Subscription;
+  private courseListPopulated: boolean;
+  @Input() public courses: Course[];
   public defaultCoursesOnPageCount: number = 4;
   public page: number = 1;
   public coursesCount: number = 0;
@@ -23,6 +26,39 @@ export class CoursesComponent {
   constructor(private courseService: CourseService,
               private loaderBlockService: LoaderBlockService,
               private cd: ChangeDetectorRef) {
+  }
+  private showCourseList(page: number, count?: number): void {
+    this.courseListPopulated = false;
+    this.loaderBlockService.show();
+    count = count || this.defaultCoursesOnPageCount;
+    const start: number = (page * count) || 0;
+    this.courses = [];
+    this.courseServiceSubscription = this.courseService.getList(start, count)
+      .subscribe(
+        (course) => {
+          course.date = new Date(course.date);
+          this.courses.push(course);
+        },
+        (err) => console.log('err: get course list:' + err),
+        () => {
+          this.page = start / count;
+          this.getCoursesCount();
+          this.courseListPopulated = true;
+        }
+      );
+  }
+
+  private getCoursesCount(): void {
+    this.coursesCount = 0;
+    this.courseServiceSubscription2 = this.courseService.getList(0)
+      .subscribe(
+        () => this.coursesCount++,
+        () => undefined,
+        () => {
+          this.coursesCount = this.coursesCount - this.defaultCoursesOnPageCount;
+          this.loaderBlockService.hide();
+          this.cd.markForCheck(); }
+      );
   }
 
   public ngOnInit(): void {
@@ -37,7 +73,7 @@ export class CoursesComponent {
     console.log('Event action: ' + evt.action);
     console.log(evt);
     if (evt.action === 'delete') {
-      this.courseService.removeItem(evt.course).subscribe(
+      this.courseService.removeItem(evt.value).subscribe(
         undefined, undefined, () => {
           this.showCourseList(this.page);
         }
@@ -48,43 +84,8 @@ export class CoursesComponent {
     }
   }
 
-  private showCourseList(page: number, count?: number): any {
-    this.loaderBlockService.show();
-    count = count || this.defaultCoursesOnPageCount;
-    const start: number = (page * count) || 0;
-    this.courses = [];
-    this.courseServiceSubscription = this.courseService.getList(start, count)
-      .subscribe(
-        (course) => {
-          course.date = new Date(course.date);
-          this.courses.push(course);
-        },
-        (err) => console.log('errr get course list:' + err),
-        () => {
-          this.page = start / count;
-          this.getCoursesCount();
-
-        }
-      );
-  }
-
-  private getCoursesCount(): void {
-    this.coursesCount = 0;
-    this.courseServiceSubscription2 = this.courseService.getList(0)
-        .subscribe(
-          () => this.coursesCount++,
-          () => undefined,
-          () => {
-            this.coursesCount = this.coursesCount - this.defaultCoursesOnPageCount;
-            this.loaderBlockService.hide();
-            this.cd.markForCheck(); }
-        );
-  }
-
   public ngOnDestroy(): void {
     this.courseServiceSubscription.unsubscribe();
     this.courseServiceSubscription2.unsubscribe();
   }
-
-
 }

@@ -2,19 +2,22 @@
   <sg-header></sg-header>
 
   <main>
-    <div *ngIf="!loginService.IsAuthenticated()">
-      <div class="login-form">
-        <div class="form-wrapper">
-          <label>Login</label>
-          <input #login type="text" size="20"/>
-          <label>Password</label>
-          <input #password size="20" type="password"/>
-          <div class="buttons">
-            <button (click)="doLogin({ login: login.value, password: password.value })">Enter</button>
-          </div>
+
+    <div class="login-form">
+
+      <div class="form-wrapper">
+        <label>Login</label>
+        <input #login type="text" size="20"/>
+        <label>Password</label>
+        <input #password size="20" type="password"/>
+        <div class="buttons">
+          <button (click)="doLogin({ login: login.value, password: password.value })">Enter</button>
+          <div *ngIf="loginError" class="error">{{loginError}}</div>
         </div>
+
       </div>
     </div>
+
 
   </main>
   <sg-footer></sg-footer>
