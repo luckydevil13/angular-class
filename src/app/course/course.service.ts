@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {Course} from './course.interface.Course';
 import {AuthorizedHttp} from '../common/services/authorized-http.service';
 import {Observable} from 'rxjs/Observable';
+import {Author} from './authors/author.interface';
 
 @Injectable()
 export class CourseService {
-  private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004/courses' : 'http://server.com/courses';
+  private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004' : 'http://server.com';
   private searchFilter: string;
 
   constructor(private http: AuthorizedHttp) {}
@@ -17,12 +18,13 @@ export class CourseService {
       topRated: item.isTopRated,
       duration: item.length,
       description: item.description,
-      authors: item.authors
+      authors: item.authors,
+      id: item.id
     };
   }
 
   public getList(start: number, count?: number): Observable<Course> {
-    const reqURL: string = `${this.urlEndPoint}`;
+    const reqURL: string = `${this.urlEndPoint}/courses`;
     const params: URLSearchParams = new URLSearchParams();
     if (start) {
       params.set('start', `${start}`);
@@ -56,7 +58,7 @@ export class CourseService {
   }
 
   public removeItem(course: Course): Observable<Response> {
-    const reqURL: string = `${this.urlEndPoint}/${course.id}`;
+    const reqURL: string = `${this.urlEndPoint}/courses/${course.id}`;
     return this.http.delete(reqURL);
   }
 
@@ -64,5 +66,10 @@ export class CourseService {
     if (value !== undefined) {
       this.searchFilter = value;
     }
+  }
+
+  public getAuthors(): Observable<Author> {
+    return this.http.get(this.urlEndPoint + '/authors', '')
+      .map((res) => res.json());
   }
 }

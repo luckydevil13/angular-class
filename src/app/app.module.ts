@@ -51,6 +51,9 @@ import {AuthorizedHttp} from './common/services/authorized-http.service';
 
 // Directives
 import {СourseBorderDirective} from './courses/courses.directive';
+import {ValidationDateDirective} from './course/course.validation-date.directive';
+import {ValidationDurationDirective} from './course/course.validation-duration.directive';
+import {ValidationAuthorsDirective} from './course/course.validation-author.directive';
 
 // Pipes
 import {CourseDurationPipe} from './course/course.pipe.duration';
@@ -95,7 +98,10 @@ type StoreType = {
     CourseComponent,
     CourseDateComponent,
     CourseAuthorsComponent,
-    CourseDurationComponent
+    CourseDurationComponent,
+    ValidationDateDirective,
+    ValidationDurationDirective,
+    ValidationAuthorsDirective
   ],
   imports: [ // import Angular's modules
     BrowserModule,

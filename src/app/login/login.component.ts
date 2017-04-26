@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {LoginService} from './login.service';
 import {LoaderBlockService} from '../common/loader/loader.service';
-import {User} from './login.interface.User';
 import {Subscription} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'sg-login',
@@ -20,23 +20,21 @@ export class LoginComponent implements OnDestroy {
               private cd: ChangeDetectorRef) {
   }
 
-  public doLogin(user: User): void {
+  public doLogin(form: NgForm): void {
     this.loginError = undefined;
-    if (user.login && user.password) {
-      this.loaderBlockService.show();
-      this.loginServiceSubscription = this.loginService.doLogin(user).subscribe(
-        undefined,
-        (err) => {
-          this.loginError = err.statusText;
-          this.loaderBlockService.hide();
-          this.cd.markForCheck();
-          },
-        () => {
-          this.loaderBlockService.hide();
-          location.href = '/#/courses';
-        }
-      );
-    }
+    this.loaderBlockService.show();
+    this.loginServiceSubscription = this.loginService.doLogin(form.value).subscribe(
+      undefined,
+      (err) => {
+        this.loginError = err.statusText;
+        this.loaderBlockService.hide();
+        this.cd.markForCheck();
+      },
+      () => {
+        this.loaderBlockService.hide();
+        location.href = '/#/courses';
+      }
+    );
   }
 
   public ngOnDestroy(): void {

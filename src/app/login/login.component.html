@@ -1,24 +1,18 @@
 <div class="wrapper">
   <sg-header></sg-header>
-
   <main>
-
-    <div class="login-form">
-
-      <div class="form-wrapper">
+    <form #loginForm="ngForm" class="login-form" (ngSubmit)="doLogin(loginForm)">
+      <fieldset class="form-wrapper">
         <label>Login</label>
-        <input #login type="text" size="20"/>
+        <input name="login" type="text" size="20" ngModel required>
         <label>Password</label>
-        <input #password size="20" type="password"/>
+        <input name="password" size="20" type="password" ngModel required>
         <div class="buttons">
-          <button (click)="doLogin({ login: login.value, password: password.value })">Enter</button>
+          <button [disabled]="loginForm.form.invalid || loginForm.form.pristine">Enter</button>
           <div *ngIf="loginError" class="error">{{loginError}}</div>
         </div>
-
-      </div>
-    </div>
-
-
+      </fieldset>
+    </form>
   </main>
   <sg-footer></sg-footer>
 </div>

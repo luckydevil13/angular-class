@@ -2,36 +2,40 @@
   <sg-header></sg-header>
   <main>
 
-    <div class="form">
-      <div class="form-wrapper">
+    <form #courseForm="ngForm" (ngSubmit)="doSubmit(courseForm)" class="form">
+      <fieldset ngModelGroup="course" class="form-wrapper">
         <div>
           <label>Title</label>
-          <input type="text" size="60"/>
+          <input type="text" size="60" maxlength="50" name="title" #title="ngModel" ngModel required>
+          <br>
+          <span class="error" *ngIf="title.invalid && title.dirty">{{title.errors | json}}</span>
         </div>
         <div>
           <label>Description</label>
-          <textarea rows="5" cols="60" name="text"></textarea>
+          <textarea rows="5" cols="60" maxlength="500" name="text" #text="ngModel" ngModel required></textarea>
+          <br>
+          <span class="error" *ngIf="text.invalid && text.dirty">{{text.errors | json}}</span>
         </div>
         <div>
           <label>Date</label>
-          <sg-course-date></sg-course-date>
+          <sg-course-date-input name="date" ngModel required validateDate></sg-course-date-input>
         </div>
         <div>
           <label>Duration</label>
-          <sg-course-duration></sg-course-duration>
+          <sg-course-duration-input name="duration" ngModel required validateDuration></sg-course-duration-input>
         </div>
-
+        <hr>
         <div>
           <label>Authors</label>
-          <sg-course-authors></sg-course-authors>
+          <sg-course-authors name="authors" ngModel></sg-course-authors>
         </div>
 
         <div class="buttons">
-          <button (click)="doSave()">Save</button>
-          <button (click)="doCancel()">Cancel</button>
+          <button type="submit" [disabled]="courseForm.form.invalid || courseForm.form.pristine">Save</button>
+          <button type="reset">Cancel</button>
         </div>
-      </div>
-    </div>
+      </fieldset>
+    </form>
   </main>
   <sg-footer></sg-footer>
-</div>
+  </div>

@@ -7,10 +7,12 @@ import {HeaderLoginComponent} from './header/login/login.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbComponent} from './header/breadcrumb/breadcrumb.component';
 import {DialogService} from './dialog.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,

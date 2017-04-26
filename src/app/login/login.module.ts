@@ -3,11 +3,13 @@ import {CommonModule} from '@angular/common';
 import {LoginService} from './login.service';
 import {LoginComponent} from './login.component';
 import {AppCommonModule} from '../common/app-common.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppCommonModule
+    AppCommonModule,
+    FormsModule
   ],
   exports: [
     LoginComponent
