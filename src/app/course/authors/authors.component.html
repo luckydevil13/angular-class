@@ -2,8 +2,7 @@
   <div *ngFor="let author of authors">
     <label>
       <input type="checkbox" name="author" value="{{author.id}}"
-             [(ngModel)]="author.checked" ngModel
-      />{{author.firstName}} {{author.lastName}}
+/>{{author.firstName}} {{author.lastName}}
     </label>
   </div>
 </div>
