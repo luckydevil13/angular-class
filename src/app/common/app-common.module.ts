@@ -8,11 +8,14 @@ import {HeaderComponent} from './header/header.component';
 import {BreadcrumbComponent} from './header/breadcrumb/breadcrumb.component';
 import {DialogService} from './dialog.service';
 import {FormsModule} from '@angular/forms';
+import { ROUTES } from '../app.routes';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(ROUTES, { useHash: true }),
   ],
   exports: [
     HeaderComponent,

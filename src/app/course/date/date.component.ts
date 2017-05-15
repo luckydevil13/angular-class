@@ -34,13 +34,13 @@ export class CourseDateComponent implements ControlValueAccessor {
   }
 
   public writeValue(value: string): void {
-    console.log(value);
     if (value !== this.innerValue) {
       this.innerValue = value;
     }
   }
 
   public registerOnChange(fn: any): void {
+    console.log('change');
     this.onChange = fn;
   }
 

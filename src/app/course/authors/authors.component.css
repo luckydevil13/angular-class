@@ -3,3 +3,8 @@
   overflow: auto;
   width: 500px;
 }
+
+.author {
+  float:left;
+  clear:left;
+}

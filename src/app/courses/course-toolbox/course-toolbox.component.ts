@@ -20,8 +20,4 @@ export class CourseToolboxComponent {
     this.searchValue = value;
     this.notifyParent.emit({action: 'search', value});
   }
-
-  protected addCourse(): void {
-    location.href = '/#/course';
-  }
 }

@@ -5,6 +5,7 @@ import {
 import {LoginService} from '../../../login/login.service';
 import {Subscription} from 'rxjs';
 import {User} from '../../../login/login.interface.User';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'sg-header-login',
@@ -19,7 +20,8 @@ export class HeaderLoginComponent implements OnDestroy, OnInit {
   private loginServiceSubscription: Subscription;
 
   constructor(public loginService: LoginService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private router: Router) {
   }
 
   public ngOnInit(): void {
@@ -35,6 +37,7 @@ export class HeaderLoginComponent implements OnDestroy, OnInit {
   public logout(): void {
     this.user = <User>{};
     this.loginService.doLogout();
+    this.router.navigate(['/login']);
     this.cd.markForCheck();
   }
 
@@ -43,5 +46,4 @@ export class HeaderLoginComponent implements OnDestroy, OnInit {
       this.loginServiceSubscription.unsubscribe();
     }
   }
-
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RequestOptionsArgs, RequestOptions, ConnectionBackend, Http, Headers} from '@angular/http';
+import {RequestOptionsArgs, RequestOptions, ConnectionBackend, Http, Headers, RequestMethod} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {currentTokenName, LoginService} from '../../login/login.service';
 
@@ -32,7 +32,16 @@ export class AuthorizedHttp extends Http {
 
   public post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     this.setupHeaderToken();
+    this.myReqOptions.body = body;
+    this.myReqOptions.method = RequestMethod.Post;
     return super.post(url, body, this.myReqOptions);
+  }
+
+  public put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+    this.setupHeaderToken();
+    this.myReqOptions.body = body;
+    this.myReqOptions.method = RequestMethod.Put;
+    return super.put(url, body, this.myReqOptions);
   }
 
 }

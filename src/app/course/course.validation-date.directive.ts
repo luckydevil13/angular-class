@@ -9,11 +9,7 @@ import {NG_VALIDATORS, FormControl, Validator} from '@angular/forms';
 })
 
 export class ValidationDateDirective implements Validator {
-
   public validate(c: FormControl): {[key: string]: boolean} {
-    if (c.value > 0) {
-      const match: boolean = c.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-      return match ? undefined : {'invalidDateFormat dd/MM/yyyy': false };
-    }
+    return /^(\d{2})\/(\d{2})\/(\d{4})$/.test(c.value) ?  undefined : {'invalidDateFormat dd/MM/yyyy': false };
   }
 }

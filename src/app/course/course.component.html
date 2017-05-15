@@ -6,33 +6,33 @@
       <fieldset ngModelGroup="course" class="form-wrapper">
         <div>
           <label>Title</label>
-          <input type="text" size="60" maxlength="50" name="title" #title="ngModel" ngModel required>
+          <input type="text" size="60" maxlength="50" name="title" #title="ngModel" [ngModel]="course.title" required>
           <br>
           <span class="error" *ngIf="title.invalid && title.dirty">{{title.errors | json}}</span>
         </div>
         <div>
           <label>Description</label>
-          <textarea rows="5" cols="60" maxlength="500" name="text" #text="ngModel" ngModel required></textarea>
+          <textarea rows="5" cols="60" maxlength="500" name="text" #text="ngModel" [ngModel]="course.description" required></textarea>
           <br>
           <span class="error" *ngIf="text.invalid && text.dirty">{{text.errors | json}}</span>
         </div>
         <div>
           <label>Date</label>
-          <sg-course-date-input name="date" ngModel required validateDate></sg-course-date-input>
+          <sg-course-date-input name="date" [ngModel]="course.date | date:'dd/MM/yyyy'" required validateDate></sg-course-date-input>
         </div>
         <div>
           <label>Duration</label>
-          <sg-course-duration-input name="duration" ngModel required validateDuration></sg-course-duration-input>
+          <sg-course-duration-input name="duration" [ngModel]="course.duration" required validateDuration></sg-course-duration-input>
         </div>
         <hr>
         <div>
           <label>Authors</label>
-          <sg-course-authors name="authors" ngModel></sg-course-authors>
+          <sg-course-authors name="authors" [(ngModel)]="course.authors"></sg-course-authors>
         </div>
 
         <div class="buttons">
           <button type="submit" [disabled]="courseForm.form.invalid || courseForm.form.pristine">Save</button>
-          <button type="reset">Cancel</button>
+          <button routerLink="/courses">Cancel</button>
         </div>
       </fieldset>
     </form>

@@ -61,10 +61,6 @@ export class CourseSimpleComponent implements OnDestroy {
     );
   }
 
-  public editCourse(course: Course): void {
-    location.href = `/#/course/${course.id}`;
-  }
-
   public ngOnDestroy(): void {
     this.subOnUnstable.unsubscribe();
     this.subOnStable.unsubscribe();

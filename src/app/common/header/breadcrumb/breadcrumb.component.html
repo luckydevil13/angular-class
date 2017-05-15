@@ -1,4 +1,4 @@
-<div *ngIf="loginService.isAuthenticated()">
-  Courses
+<div *ngIf="!isOnLoginPage">
+  <a routerLink="/courses">Courses</a>
+  <span *ngIf="currentCourseName"> → {{currentCourseName}}</span>
 </div>
-

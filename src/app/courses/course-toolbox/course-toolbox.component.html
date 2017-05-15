@@ -1,5 +1,5 @@
 <div class="toolbox">
   <input #searchBox type="text" [(ngModel)]="searchValue" (focus)="searchBox.value=''" size="40">
   <button (click)="searchCourse(searchBox.value)">Search</button>
-    <button class="btn-add" (click)="addCourse()">Add course</button>
+    <button class="btn-add" routerLink="/course/new">Add course</button>
 </div>

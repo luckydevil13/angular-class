@@ -3,6 +3,7 @@ import {LoginService} from './login.service';
 import {LoaderBlockService} from '../common/loader/loader.service';
 import {Subscription} from 'rxjs';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'sg-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnDestroy {
 
   constructor(private loginService: LoginService,
               private loaderBlockService: LoaderBlockService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private router: Router) {
   }
 
   public doLogin(form: NgForm): void {
@@ -32,7 +34,7 @@ export class LoginComponent implements OnDestroy {
       },
       () => {
         this.loaderBlockService.hide();
-        location.href = '/#/courses';
+        this.router.navigate(['/courses']);
       }
     );
   }

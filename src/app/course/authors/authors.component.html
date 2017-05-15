@@ -1,8 +1,6 @@
 <div class="area">
-  <div *ngFor="let author of authors">
-    <label>
-      <input type="checkbox" name="author" value="{{author.id}}"
-/>{{author.firstName}} {{author.lastName}}
-    </label>
+  <div *ngFor="let author of authors" class="author">
+    <label>{{author.firstName}} {{author.lastName}}</label>
+    <input [id]="author.id" type="checkbox" value="{{author.id}}" (change)="onSelectionChange(author)" [checked]="isChecked(author.id)">
   </div>
 </div>

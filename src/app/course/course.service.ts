@@ -9,7 +9,8 @@ export class CourseService {
   private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004' : 'http://server.com';
   private searchFilter: string;
 
-  constructor(private http: AuthorizedHttp) {}
+  constructor(private http: AuthorizedHttp) {
+  }
 
   private mapResponseShape(item: any): Course {
     return {
@@ -46,15 +47,25 @@ export class CourseService {
   }
 
   public createCourse(course: Course): void {
-    return;
+    this.http.post(this.urlEndPoint + `/courses/`, JSON.stringify(course))
+      .map((res) => {
+        console.log(res.json());
+      });
   }
 
-  public getItemByID(id: number): void {
-    return;
+  public getItemByID(id: number): Observable<Course> {
+    return this.http.get(this.urlEndPoint + `/courses/${id}`)
+      .map((res) => res.json())
+      .map((item) => {
+        return this.mapResponseShape(item);
+      });
   }
 
   public updateItem(course: Course): void {
-    return;
+    this.http.put(this.urlEndPoint + `/courses/${course.id}`, JSON.stringify(course))
+      .map((res) => {
+        console.log(res.json());
+      });
   }
 
   public removeItem(course: Course): Observable<Response> {
@@ -68,7 +79,7 @@ export class CourseService {
     }
   }
 
-  public getAuthors(): Observable<Author> {
+  public getAuthors(): Observable<Author[]> {
     return this.http.get(this.urlEndPoint + '/authors', '')
       .map((res) => res.json());
   }

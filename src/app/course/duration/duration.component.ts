@@ -35,7 +35,6 @@ export class CourseDurationComponent implements ControlValueAccessor {
   }
 
   public writeValue(value: string): void {
-    console.log(value);
     if (value !== this.innerValue) {
       this.innerValue = value;
     }

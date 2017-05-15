@@ -9,11 +9,7 @@ import {NG_VALIDATORS, FormControl, Validator} from '@angular/forms';
 })
 
 export class ValidationDurationDirective implements Validator {
-
   public validate(c: FormControl): {[key: string]: boolean} {
-    if (c.value) {
-      const match: boolean = c.value.match(/^\d+$/);
-      return match ? undefined : {'invalidDuration, only number allowed': false };
-    }
+    return /^\d+$/.test(c.value) ?  undefined : {'invalidDuration, only number allowed': false };
   }
 }

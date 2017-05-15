@@ -44,10 +44,11 @@ import { CourseDurationComponent } from './course/duration/duration.component';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
-// Servers
+// Services
 import { CourseService } from './course/course.service';
 import {LoaderBlockService} from './common/loader/loader.service';
 import {AuthorizedHttp} from './common/services/authorized-http.service';
+import {AuthGuard} from './app.auth.guard';
 
 // Directives
 import {СourseBorderDirective} from './courses/courses.directive';
@@ -71,7 +72,8 @@ const APP_PROVIDERS: any = [
       defaultOptions: RequestOptions) =>
       new AuthorizedHttp(backend, defaultOptions),
     deps: [XHRBackend, RequestOptions]
-  }
+  },
+  AuthGuard
 ];
 
 type StoreType = {
@@ -107,7 +109,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
     AppCommonModule,
     LoginModule,
     NgxPaginationModule
@@ -160,5 +162,4 @@ export class AppModule {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
-
 }
