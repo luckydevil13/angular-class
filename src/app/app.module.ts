@@ -59,6 +59,13 @@ import {ValidationAuthorsDirective} from './course/course.validation-author.dire
 // Pipes
 import {CourseDurationPipe} from './course/course.pipe.duration';
 
+// Store
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { authReducer } from './reducers/auth.ts';
+import { coursesReducer } from './reducers/courses.ts';
+import { courseReducer } from './reducers/course.ts';
+
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
@@ -112,7 +119,15 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, { useHash: true }),
     AppCommonModule,
     LoginModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    StoreModule.provideStore({
+      auth: authReducer,
+      courses: coursesReducer,
+      course: courseReducer
+    }),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    }),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

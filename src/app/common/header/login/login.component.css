@@ -3,6 +3,6 @@
 }
 
 .link {
-  cursor: url;
+  cursor: pointer;
   text-decoration: underline;
 }

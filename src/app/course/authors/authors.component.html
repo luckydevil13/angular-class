@@ -1,6 +1,15 @@
 <div class="area">
-  <div *ngFor="let author of authors" class="author">
-    <label>{{author.firstName}} {{author.lastName}}</label>
-    <input [id]="author.id" type="checkbox" value="{{author.id}}" (change)="onSelectionChange(author)" [checked]="isChecked(author.id)">
+  <label *ngFor="let author of authors; trackBy:getAuthorId"> {{author.firstName}} {{author.lastName}}
+    <input type="checkbox" class="author" #checkbox
+                 [value]="author.id"
+                 [checked]="isAuthorSelected(author.id)"
+                 (change)="updateSelected(author.id, checkbox.checked)">
+  </label>
+
+
+  <div *ngIf="control?.invalid && control?.dirty">
+    <div *ngIf="control?.errors?.required">Author must be selected</div>
   </div>
 </div>
+
+

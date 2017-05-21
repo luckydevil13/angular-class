@@ -6,7 +6,6 @@ import {currentTokenName, LoginService} from '../../login/login.service';
 @Injectable()
 export class AuthorizedHttp extends Http {
   private header: Headers;
-  private myReqOptions: RequestOptions;
 
   constructor(backend: ConnectionBackend,
               defaultOptions: RequestOptions,
@@ -14,34 +13,32 @@ export class AuthorizedHttp extends Http {
     super(backend, defaultOptions);
   }
 
-  private setupHeaderToken(): void {
+  private setupHeaderToken(options: RequestOptionsArgs): RequestOptionsArgs {
     const token: string = localStorage.getItem(currentTokenName);
-    this.header = new Headers({Authorization: token});
-    this.myReqOptions = new RequestOptions({headers: this.header});
+    if (!options || !options.headers) {
+      options.headers = new Headers();
+    }
+    options.headers.set('Authorization', token );
+    return options;
   }
 
-  public get(url: string, options?: RequestOptionsArgs): Observable<any> {
-    this.setupHeaderToken();
-    return super.get(url, this.myReqOptions);
+  public get(url: string, options: RequestOptionsArgs = {}): Observable<any> {
+    options = this.setupHeaderToken(options);
+    return super.get(url, options);
   }
 
-  public delete(url: string, options?: RequestOptionsArgs): Observable<any> {
-    this.setupHeaderToken();
-    return super.delete(url, this.myReqOptions);
+  public delete(url: string, options: RequestOptionsArgs = {}): Observable<any> {
+    options = this.setupHeaderToken(options);
+    return super.delete(url, options);
   }
 
-  public post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-    this.setupHeaderToken();
-    this.myReqOptions.body = body;
-    this.myReqOptions.method = RequestMethod.Post;
-    return super.post(url, body, this.myReqOptions);
+  public post(url: string, body: any, options: RequestOptionsArgs = {}): Observable<any> {
+    options = this.setupHeaderToken(options);
+    return super.post(url, body, options);
   }
 
-  public put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-    this.setupHeaderToken();
-    this.myReqOptions.body = body;
-    this.myReqOptions.method = RequestMethod.Put;
-    return super.put(url, body, this.myReqOptions);
+  public put(url: string, body: any, options: RequestOptionsArgs = {}): Observable<any> {
+    options = this.setupHeaderToken(options);
+    return super.put(url, body, options);
   }
-
 }
