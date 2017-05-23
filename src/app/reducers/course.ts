@@ -24,6 +24,6 @@ export function courseReducer(state: CourseReducer = initialState, action: Actio
     case COURSE_SAVED:
       return Object.assign({}, action.payload);
     default:
-      return Object.assign({}, initialState);
+      return state;
   }
 }
