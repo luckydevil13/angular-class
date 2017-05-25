@@ -14,7 +14,7 @@ export const currentTokenName: string = 'currentToken';
 
 @Injectable()
 export class LoginService implements OnDestroy {
-  private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004/auth' : 'http://server.com/auth';
+  private urlEndPoint: string = 'http://localhost:3004/auth';
   private userServiceSubscription: Subscription;
   private user: Observable<User>;
   public lastTenLogins: ReplaySubject<string>;

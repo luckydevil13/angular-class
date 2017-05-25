@@ -15,39 +15,39 @@ import {
   COURSE_SAVED
 } from '../reducers/course';
 
+export function mapResponseShape(item: any): Course {
+  return {
+    title: item.name,
+    date: new Date(item.date),
+    topRated: item.isTopRated,
+    duration: item.length,
+    description: item.description,
+    authors: item.authors,
+    id: item.id
+  };
+}
+
+export function mapMyModelToCourse(course: Course): any {
+  return {
+    name: course.title,
+    date: new Date(course.date).toISOString(),
+    isTopRated: course.topRated,
+    length: course.duration,
+    description: course.description,
+    authors: course.authors,
+    id: course.id
+  };
+}
+
 @Injectable()
 export class CourseService {
-  private urlEndPoint: string = ENV === 'development' ? 'http://localhost:3004' : 'http://server.com';
+  private urlEndPoint: string = 'http://localhost:3004';
   private searchFilter: string;
   private courses: Observable<Course>;
 
   constructor(private http: AuthorizedHttp,
               private store: Store<any>) {
     this.store.dispatch({type: INIT_COURSES});
-  }
-
-  private mapResponseShape(item: any): Course {
-    return {
-      title: item.name,
-      date: new Date(item.date),
-      topRated: item.isTopRated,
-      duration: item.length,
-      description: item.description,
-      authors: item.authors,
-      id: item.id
-    };
-  }
-
-  private mapMyModelToCourse(course: Course): any {
-    return {
-      name: course.title,
-      date: new Date(course.date).toISOString(),
-      isTopRated: course.topRated,
-      length: course.duration,
-      description: course.description,
-      authors: course.authors,
-      id: course.id
-    };
   }
 
   public getList(start: number, count?: number): Observable<Course> {
@@ -68,7 +68,7 @@ export class CourseService {
       .map(
         (courses) => courses
           .map((item) => {
-            return this.mapResponseShape(item);
+            return mapResponseShape(item);
           })
       ).map((data) => {
         this.store.dispatch({
@@ -88,13 +88,13 @@ export class CourseService {
     return this.http.get(this.urlEndPoint + `/courses/${id}`)
       .map((res) => res.json())
       .map((item) => {
-        this.store.dispatch({ type: COURSE_LOADED, payload: this.mapResponseShape(item) });
-        return this.mapResponseShape(item);
+        this.store.dispatch({ type: COURSE_LOADED, payload: mapResponseShape(item) });
+        return mapResponseShape(item);
       });
   }
 
   public updateItem(course: Course): Observable<any> {
-    return this.http.put(`${this.urlEndPoint}/courses/${course.id}`, JSON.stringify(this.mapMyModelToCourse(course)))
+    return this.http.put(`${this.urlEndPoint}/courses/${course.id}`, JSON.stringify(mapMyModelToCourse(course)))
       .map((res) => {
         this.store.dispatch({ type: COURSE_SAVED, payload: course });
         console.log(res.json());

@@ -62,9 +62,9 @@ import {CourseDurationPipe} from './course/course.pipe.duration';
 // Store
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { authReducer } from './reducers/auth.ts';
-import { coursesReducer } from './reducers/courses.ts';
-import { courseReducer } from './reducers/course.ts';
+import { authReducer } from './reducers/auth';
+import { coursesReducer } from './reducers/courses';
+import { courseReducer } from './reducers/course';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
