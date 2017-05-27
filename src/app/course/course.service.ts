@@ -95,9 +95,10 @@ export class CourseService {
 
   public updateItem(course: Course): Observable<any> {
     return this.http.put(`${this.urlEndPoint}/courses/${course.id}`, JSON.stringify(mapMyModelToCourse(course)))
-      .map((res) => {
+      .map((res) => res.json())
+      .map((item) => {
         this.store.dispatch({ type: COURSE_SAVED, payload: course });
-        console.log(res.json());
+        return mapResponseShape(item);
       });
   }
 
